@@ -1,18 +1,17 @@
 #' Fast mutual nearest neighbors correction with `scran.chan`
 #'
-#' @seealso [mnnCorrect.chan][scran.chan::mnnCorrect.chan]
 #' @export
-chan_mnn <- function(object, ...) UseMethod("chan_mnn")
+runMNN <- function(object, ...) UseMethod("runMNN")
 
-#' @inheritParams chan_pca
+#' @inheritParams runPCA
 #' @export
-#' @rdname chan_mnn
-chan_mnn.SingleCellExperiment <- function(object, ...,
-                                          dimred = "PCA", n_dimred = NULL,
-                                          exprs_values = NULL,
-                                          name = "corrected") {
+#' @rdname runMNN
+runMNN.SingleCellExperiment <- function(object, ...,
+                                        dimred = "PCA", n_dimred = NULL,
+                                        exprs_values = NULL,
+                                        name = "corrected") {
     mat <- .get_mat_from_sce(object, exprs_values, dimred, n_dimred)
-    mnn <- chan_mnn(object = mat, ...)
+    mnn <- runMNN(object = mat, ...)
     SingleCellExperiment::reducedDim(object, name) <- mnn
     object
 }
@@ -22,10 +21,11 @@ chan_mnn.SingleCellExperiment <- function(object, ...,
 #' @inheritDotParams scran.chan::mnnCorrect.chan -x -batch -k -approximate -num.threads
 #' @param approximate Logical scalar specifying whether to perform an
 #' approximate neighbor search.
+#' @seealso [mnnCorrect.chan][scran.chan::mnnCorrect.chan]
 #' @export
-#' @rdname chan_mnn
-chan_mnn.default <- function(object, batch = NULL, k = 15L,
-                             ..., approximate = TRUE, threads = 1L) {
+#' @rdname runMNN
+runMNN.default <- function(object, batch = NULL, k = 15L,
+                           ..., approximate = TRUE, threads = 1L) {
     assert_bool(approximate)
     threads <- as.integer(threads)
     # run MNN --------------------------------------------------------

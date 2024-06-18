@@ -1,18 +1,17 @@
 #' Compute the uniform manifold approximation and projection with `scran.chan`
 #'
-#' @seealso [mnnCorrect.chan][scran.chan::mnnCorrect.chan]
 #' @export
-chan_umap <- function(object, ...) UseMethod("chan_umap")
+runUMAP <- function(object, ...) UseMethod("runUMAP")
 
-#' @inheritParams chan_umap
+#' @inheritParams runPCA
 #' @export
-#' @rdname chan_mnn
-chan_umap.SingleCellExperiment <- function(object, ...,
-                                           exprs_values = "counts",
-                                           dimred = NULL, n_dimred = NULL,
-                                           name = "UMAP") {
+#' @rdname runUMAP
+runUMAP.SingleCellExperiment <- function(object, ...,
+                                         dimred = "PCA", n_dimred = NULL,
+                                         exprs_values = NULL,
+                                         name = "UMAP") {
     mat <- .get_mat_from_sce(object, exprs_values, dimred, n_dimred)
-    umap <- chan_umap(object = mat, ...)
+    umap <- runUMAP(object = mat, ...)
     SingleCellExperiment::reducedDim(object, name) <- umap
     object
 }
@@ -24,16 +23,17 @@ chan_umap.SingleCellExperiment <- function(object, ...,
 #' @param n_epochs Integer scalar specifying the number of epochs to perform. If
 #' set to `-1`, an appropriate number of epochs is chosen based on ncol(x).
 #' @param seed Integer scalar specifying the seed to use.
-#' @inheritParams chan_pca
+#' @inheritParams runPCA
 #' @inheritParams scran.chan::runUMAP.chan
 #' @inherit scran.chan::runUMAP.chan return
+#' @seealso [mnnCorrect.chan][scran.chan::mnnCorrect.chan]
 #' @export
-#' @rdname chan_umap
-chan_umap.default <- function(object, n_neighbors = 15L,
-                              min_dist = 0.01, n_epochs = -1L,
-                              ...,
-                              approximate = TRUE, seed = 123456L,
-                              threads = 1L) {
+#' @rdname runUMAP
+runUMAP.default <- function(object, n_neighbors = 15L,
+                            min_dist = 0.01, n_epochs = -1L,
+                            ...,
+                            approximate = TRUE, seed = 123456L,
+                            threads = 1L) {
     assert_number(n_neighbors)
     assert_number(min_dist)
     assert_number(n_epochs)

@@ -4,7 +4,7 @@
 #' integers). Rows are features and columns are cells.
 #' @param ... Additional arguments passed to default methods.
 #' @export
-chan_pca <- function(object, ...) UseMethod("chan_pca")
+runPCA <- function(object, ...) UseMethod("runPCA")
 
 #' @param exprs_values Integer scalar or string indicating which assay of x
 #' contains the expression values.
@@ -17,15 +17,15 @@ chan_pca <- function(object, ...) UseMethod("chan_pca")
 #' @param name String specifying the name to be used to store the result in the
 #' [reducedDims][SingleCellExperiment::reducedDim] of the output.
 #' @export
-#' @rdname chan_pca
-chan_pca.SingleCellExperiment <- function(object, ...,
+#' @rdname runPCA
+runPCA.SingleCellExperiment <- function(object, ...,
                                           exprs_values = "counts",
                                           dimred = NULL, n_dimred = NULL,
                                           size_factors = NULL,
                                           name = "PCA") {
     size_factors <- size_factors %||% SingleCellExperiment::sizeFactors(object)
     mat <- .get_mat_from_sce(object, exprs_values, dimred, n_dimred)
-    pca <- chan_pca(object = mat, ..., size_factors = size_factors)
+    pca <- runPCA(object = mat, ..., size_factors = size_factors)
     SingleCellExperiment::reducedDim(object, name) <- pca
     object
 }
@@ -54,9 +54,10 @@ chan_pca.SingleCellExperiment <- function(object, ...,
 #' memory efficient if the data has already been loaded into memory. If TRUE,
 #' any setting of force.integer is ignored.
 #' @param threads Integer scalar specifying the number of threads to use.
+#' @seealso [runPCA.chan][scran.chan::runPCA.chan]
 #' @export
-#' @rdname chan_pca
-chan_pca.default <- function(object, d = 50L, scale = FALSE, ...,
+#' @rdname runPCA
+runPCA.default <- function(object, d = 50L, scale = FALSE, ...,
                              size_factors = NULL, subset_row = NULL,
                              batch = NULL, norm_batch = NULL, pca_batch = NULL,
                              force_integer = TRUE, no_sparse_copy = TRUE,
