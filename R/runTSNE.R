@@ -1,4 +1,4 @@
-#' Compute the uniform manifold approximation and projection with `scran.chan`
+#' Compute the t-stochastic neighbor embedding with `scran.chan`
 #'
 #' @export
 runTSNE <- function(object, ...) UseMethod("runTSNE")

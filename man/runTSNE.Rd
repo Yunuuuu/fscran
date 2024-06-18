@@ -4,7 +4,7 @@
 \alias{runTSNE}
 \alias{runTSNE.SingleCellExperiment}
 \alias{runTSNE.default}
-\title{Compute the uniform manifold approximation and projection with \code{scran.chan}}
+\title{Compute the t-stochastic neighbor embedding with \code{scran.chan}}
 \usage{
 runTSNE(object, ...)
 
@@ -69,7 +69,7 @@ perform.}
 \item{threads}{Integer scalar specifying the number of threads to use.}
 }
 \description{
-Compute the uniform manifold approximation and projection with \code{scran.chan}
+Compute the t-stochastic neighbor embedding with \code{scran.chan}
 }
 \seealso{
 \link[scran.chan:runTSNE.chan]{runTSNE.chan}
