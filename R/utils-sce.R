@@ -1,4 +1,4 @@
-.get_mat_from_sce <- function(x, exprs_values, dimred, n_dimred) {
+.get_mat_from_sce <- function(x, assay, dimred, n_dimred) {
     if (!is.null(dimred)) {
         # value is expected to be a matrix or matrix-like object with number of
         # rows equal to ncol(x).
@@ -10,6 +10,6 @@
         # we always regard features in row and cells in column
         t(mat)
     } else {
-        SummarizedExperiment::assay(x, exprs_values)
+        SummarizedExperiment::assay(x, assay)
     }
 }

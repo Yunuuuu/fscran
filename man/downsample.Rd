@@ -8,7 +8,7 @@
 \usage{
 downsample(object, ...)
 
-\method{downsample}{SingleCellExperiment}(object, ..., dimred = "PCA", n_dimred = NULL, exprs_values = NULL)
+\method{downsample}{SingleCellExperiment}(object, ..., dimred = "PCA", n_dimred = NULL, assay = NULL)
 
 \method{downsample}{default}(object, ..., threads = 1L)
 }
@@ -30,7 +30,7 @@ reduction results to use.}
 \item{n_dimred}{Integer scalar or vector specifying the dimensions to use if
 dimred is specified.}
 
-\item{exprs_values}{Integer scalar or string indicating which assay of x
+\item{assay}{Integer scalar or string indicating which assay of x
 contains the expression values.}
 
 \item{threads}{Integer scalar specifying the number of threads to use.}

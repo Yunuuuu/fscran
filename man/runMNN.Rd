@@ -13,7 +13,7 @@ runMNN(object, ...)
   ...,
   dimred = "PCA",
   n_dimred = NULL,
-  exprs_values = NULL,
+  assay = NULL,
   name = "corrected"
 )
 
@@ -42,7 +42,7 @@ reduction results to use.}
 \item{n_dimred}{Integer scalar or vector specifying the dimensions to use if
 dimred is specified.}
 
-\item{exprs_values}{Integer scalar or string indicating which assay of x
+\item{assay}{Integer scalar or string indicating which assay of x
 contains the expression values.}
 
 \item{name}{String specifying the name to be used to store the result in the

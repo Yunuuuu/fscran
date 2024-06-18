@@ -8,9 +8,9 @@ runUMAP <- function(object, ...) UseMethod("runUMAP")
 #' @rdname runUMAP
 runUMAP.SingleCellExperiment <- function(object, ...,
                                          dimred = "PCA", n_dimred = NULL,
-                                         exprs_values = NULL,
+                                         assay = NULL,
                                          name = "UMAP") {
-    mat <- .get_mat_from_sce(object, exprs_values, dimred, n_dimred)
+    mat <- .get_mat_from_sce(object, assay, dimred, n_dimred)
     umap <- runUMAP(object = mat, ...)
     SingleCellExperiment::reducedDim(object, name) <- umap
     object

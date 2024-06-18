@@ -10,8 +10,8 @@ clusterSNNGraph <- function(object, ...) UseMethod("clusterSNNGraph")
 clusterSNNGraph.SingleCellExperiment <- function(object, ...,
                                                  dimred = "PCA",
                                                  n_dimred = NULL,
-                                                 exprs_values = NULL) {
-    mat <- .get_mat_from_sce(object, exprs_values, dimred, n_dimred)
+                                                 assay = NULL) {
+    mat <- .get_mat_from_sce(object, assay, dimred, n_dimred)
     clusterSNNGraph(object = mat, ...)
 }
 

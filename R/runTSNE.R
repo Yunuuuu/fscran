@@ -8,9 +8,9 @@ runTSNE <- function(object, ...) UseMethod("runTSNE")
 #' @rdname runTSNE
 runTSNE.SingleCellExperiment <- function(object, ...,
                                          dimred = "PCA", n_dimred = NULL,
-                                         exprs_values = NULL,
+                                         assay = NULL,
                                          name = "TSNE") {
-    mat <- .get_mat_from_sce(object, exprs_values, dimred, n_dimred)
+    mat <- .get_mat_from_sce(object, assay, dimred, n_dimred)
     tsne <- runTSNE(object = mat, ...)
     SingleCellExperiment::reducedDim(object, name) <- tsne
     object

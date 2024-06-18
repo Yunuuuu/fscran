@@ -11,7 +11,7 @@ runPCA(object, ...)
 \method{runPCA}{SingleCellExperiment}(
   object,
   ...,
-  exprs_values = "counts",
+  assay = "counts",
   dimred = NULL,
   n_dimred = NULL,
   size_factors = NULL,
@@ -39,7 +39,7 @@ integers). Rows are features and columns are cells.}
 
 \item{...}{Additional arguments passed to default methods.}
 
-\item{exprs_values}{Integer scalar or string indicating which assay of x
+\item{assay}{Integer scalar or string indicating which assay of x
 contains the expression values.}
 
 \item{dimred}{String or integer scalar specifying the existing dimensionality

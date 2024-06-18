@@ -6,7 +6,7 @@
 #' @export
 runPCA <- function(object, ...) UseMethod("runPCA")
 
-#' @param exprs_values Integer scalar or string indicating which assay of x
+#' @param assay Integer scalar or string indicating which assay of x
 #' contains the expression values.
 #' @param dimred String or integer scalar specifying the existing dimensionality
 #' reduction results to use.
@@ -19,12 +19,12 @@ runPCA <- function(object, ...) UseMethod("runPCA")
 #' @export
 #' @rdname runPCA
 runPCA.SingleCellExperiment <- function(object, ...,
-                                        exprs_values = "counts",
+                                        assay = "counts",
                                         dimred = NULL, n_dimred = NULL,
                                         size_factors = NULL,
                                         name = "PCA") {
     size_factors <- size_factors %||% SingleCellExperiment::sizeFactors(object)
-    mat <- .get_mat_from_sce(object, exprs_values, dimred, n_dimred)
+    mat <- .get_mat_from_sce(object, assay, dimred, n_dimred)
     pca <- runPCA(object = mat, ..., size_factors = size_factors)
     SingleCellExperiment::reducedDim(object, name) <- pca
     object

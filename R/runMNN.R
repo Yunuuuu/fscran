@@ -8,9 +8,9 @@ runMNN <- function(object, ...) UseMethod("runMNN")
 #' @rdname runMNN
 runMNN.SingleCellExperiment <- function(object, ...,
                                         dimred = "PCA", n_dimred = NULL,
-                                        exprs_values = NULL,
+                                        assay = NULL,
                                         name = "corrected") {
-    mat <- .get_mat_from_sce(object, exprs_values, dimred, n_dimred)
+    mat <- .get_mat_from_sce(object, assay, dimred, n_dimred)
     mnn <- runMNN(object = mat, ...)
     SingleCellExperiment::reducedDim(object, name) <- mnn
     object
