@@ -39,14 +39,14 @@ runPCA.SingleCellExperiment <- function(object, ...,
 #' @param batch Vector or factor of length equal to the number of cells,
 #' specifying the batch of origin for each cell. Alternatively NULL if all cells
 #' belong to the same batch.
-#' @param norm_batch String indicating how batch should be handled when
+#' @param batch_mode String indicating how batch should be handled when
 #' centering the size factors. If `"lowest"`, we downscale all batches to the
 #' coverage of the lowest batch. If `"perblock"`, we scale each batch to a mean
 #' of 1. Default: `"perblock"`.
-#' @param pca_batch String indicating how batch should be handled (if it is
-#' supplied). "block" is equivalent to linear regression on x prior to PCA,
-#' while "weight" will only weight each batch so that they contribute equally to
-#' the PCA.
+#' @param batch_method String indicating how batch should be handled (if it is
+#' supplied). `"block"` is equivalent to linear regression on x prior to PCA,
+#' while `"weight"` will only weight each batch so that they contribute equally
+#' to the PCA.
 #' @param force_integer Logical scalar indicating whether double-precision x
 #' should be forced into integers.
 #' @param no_sparse_copy Logical scalar indicating whether we should avoid a
@@ -61,10 +61,10 @@ runPCA.SingleCellExperiment <- function(object, ...,
 #' @rdname runPCA
 runPCA.default <- function(object, d = 50L, scale = FALSE, ...,
                            size_factors = NULL, subset_row = NULL,
-                           batch = NULL, norm_batch = NULL, pca_batch = NULL,
+                           batch = NULL, batch_mode = NULL, batch_method = NULL,
                            force_integer = TRUE, no_sparse_copy = TRUE,
                            threads = 1L) {
-    norm_batch <- match.arg(norm_batch, c("perblock", "lowest"))
+    batch_mode <- match.arg(batch_mode, c("perblock", "lowest"))
     # nromalization, adjust for differences in sequencing depth --------
     norm <- scran.chan::logNormCounts.chan(
         x = scran.chan::initializeSparseMatrix(
@@ -76,7 +76,7 @@ runPCA.default <- function(object, d = 50L, scale = FALSE, ...,
         ),
         size.factors = size_factors,
         batch = batch,
-        batch.mode = norm_batch,
+        batch.mode = batch_mode,
         num.threads = threads
     )
 
@@ -88,7 +88,7 @@ runPCA.default <- function(object, d = 50L, scale = FALSE, ...,
         scale = scale,
         num.threads = threads,
         batch = batch,
-        batch.method = pca_batch,
+        batch.method = batch_method,
         rotation = TRUE
     )
     # batch_pcs$components:

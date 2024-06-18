@@ -26,8 +26,8 @@ runPCA(object, ...)
   size_factors = NULL,
   subset_row = NULL,
   batch = NULL,
-  norm_batch = NULL,
-  pca_batch = NULL,
+  batch_mode = NULL,
+  batch_method = NULL,
   force_integer = TRUE,
   no_sparse_copy = TRUE,
   threads = 1L
@@ -67,15 +67,15 @@ features in x are used.}
 specifying the batch of origin for each cell. Alternatively NULL if all cells
 belong to the same batch.}
 
-\item{norm_batch}{String indicating how batch should be handled when
+\item{batch_mode}{String indicating how batch should be handled when
 centering the size factors. If \code{"lowest"}, we downscale all batches to the
 coverage of the lowest batch. If \code{"perblock"}, we scale each batch to a mean
 of 1. Default: \code{"perblock"}.}
 
-\item{pca_batch}{String indicating how batch should be handled (if it is
-supplied). "block" is equivalent to linear regression on x prior to PCA,
-while "weight" will only weight each batch so that they contribute equally to
-the PCA.}
+\item{batch_method}{String indicating how batch should be handled (if it is
+supplied). \code{"block"} is equivalent to linear regression on x prior to PCA,
+while \code{"weight"} will only weight each batch so that they contribute equally
+to the PCA.}
 
 \item{force_integer}{Logical scalar indicating whether double-precision x
 should be forced into integers.}
