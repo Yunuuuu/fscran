@@ -24,16 +24,16 @@ runMNN.SingleCellExperiment <- function(object, ...,
 #' be appropriate for speeding up correction of very large datasets. If this is
 #' set to `NULL`, no cap is used.
 #' @param reference_policy String specifying the policy to use to choose the
-#' first reference batch. This can be based on the largest batch ("max-size"),
-#' the most variable batch ("max-variance"), some combination of those two
-#' ("max-rss") or the first specified input ("input"). Only used for automatic
-#' merges, i.e., when order=NULL.
+#' first reference batch. This can be based on the largest batch (`"max-size"`),
+#' the most variable batch (`"max-variance"`), some combination of those two
+#' (`"max-rss"`) or the first specified input ("input"). Only used for automatic
+#' merges, i.e., when order=`NULL`.
 #' @param approximate Logical scalar specifying whether to perform an
 #' approximate neighbor search.
 #' @seealso [mnnCorrect.chan][scran.chan::mnnCorrect.chan]
 #' @export
 #' @rdname runMNN
-runMNN.default <- function(object, batch = NULL, k = 15L,
+runMNN.default <- function(object, batch = NULL, k = 15L, ...,
                            nmads = 3L, mass_cap = NULL,
                            order = NULL, reference_policy = NULL,
                            approximate = TRUE, threads = 1L) {

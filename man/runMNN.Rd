@@ -21,6 +21,7 @@ runMNN(object, ...)
   object,
   batch = NULL,
   k = 15L,
+  ...,
   nmads = 3L,
   mass_cap = NULL,
   order = NULL,
@@ -65,10 +66,10 @@ set to \code{NULL}, no cap is used.}
 If \code{NULL}, a suitable merge order is automatically determined.}
 
 \item{reference_policy}{String specifying the policy to use to choose the
-first reference batch. This can be based on the largest batch ("max-size"),
-the most variable batch ("max-variance"), some combination of those two
-("max-rss") or the first specified input ("input"). Only used for automatic
-merges, i.e., when order=NULL.}
+first reference batch. This can be based on the largest batch (\code{"max-size"}),
+the most variable batch (\code{"max-variance"}), some combination of those two
+(\code{"max-rss"}) or the first specified input ("input"). Only used for automatic
+merges, i.e., when order=\code{NULL}.}
 
 \item{approximate}{Logical scalar specifying whether to perform an
 approximate neighbor search.}
