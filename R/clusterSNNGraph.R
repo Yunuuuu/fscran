@@ -15,6 +15,16 @@ clusterSNNGraph.SingleCellExperiment <- function(object, ...,
     clusterSNNGraph(object = mat, ...)
 }
 
+#' @inheritParams runPCA
+#' @export
+#' @rdname clusterSNNGraph
+clusterSNNGraph.Seurat <- function(object, ...,
+                                   dimred = "PCA", n_dimred = NULL,
+                                   assay = NULL, layer = NULL) {
+    mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
+    clusterSNNGraph(object = mat, ...)
+}
+
 #' @inheritParams runMNN
 #' @param method String specifying the community detection method to use.
 #' Options are multi-level (`"multilevel"`), Walktrap (`"walktrap"`) or Leiden

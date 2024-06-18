@@ -3,12 +3,22 @@
 \name{clusterSNNGraph}
 \alias{clusterSNNGraph}
 \alias{clusterSNNGraph.SingleCellExperiment}
+\alias{clusterSNNGraph.Seurat}
 \alias{clusterSNNGraph.default}
 \title{Graph-based clustering with \code{scran.chan}}
 \usage{
 clusterSNNGraph(object, ...)
 
 \method{clusterSNNGraph}{SingleCellExperiment}(object, ..., dimred = "PCA", n_dimred = NULL, assay = NULL)
+
+\method{clusterSNNGraph}{Seurat}(
+  object,
+  ...,
+  dimred = "PCA",
+  n_dimred = NULL,
+  assay = NULL,
+  layer = NULL
+)
 
 \method{clusterSNNGraph}{default}(
   object,
@@ -38,6 +48,8 @@ dimred is specified.}
 
 \item{assay}{Integer scalar or string indicating which assay of x
 contains the expression values.}
+
+\item{layer}{Name of the layer to get from the assay data.}
 
 \item{k}{Integer scalar specifying the number of neighbors to use when
 identifying MNN pairs.}
