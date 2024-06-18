@@ -9,7 +9,7 @@
 \usage{
 logNormAndPCA(object, ...)
 
-\method{logNormAndPCA}{SingleCellExperiment}(object, ..., size_factors = NULL, assay = "counts", name = "PCA")
+\method{logNormAndPCA}{SingleCellExperiment}(object, ..., name = "PCA")
 
 \method{logNormAndPCA}{Seurat}(object, ..., assay = NULL, layer = "counts", name = "PCA")
 
@@ -18,31 +18,26 @@ logNormAndPCA(object, ...)
   d = 50L,
   scale = FALSE,
   ...,
-  size_factors = NULL,
   subset_row = NULL,
   batch = NULL,
-  batch_mode = NULL,
-  batch_method = NULL,
-  force_integer = TRUE,
-  no_sparse_copy = TRUE,
-  threads = NULL
+  batch_method = NULL
 )
 }
 \arguments{
-\item{object}{A matrix-like object containing the counts (non-negative
-integers). Rows are features and columns are cells.}
+\item{object}{A matrix-like object. Rows are features and columns are cells.}
 
-\item{...}{Additional arguments passed to default methods.}
-
-\item{size_factors}{A numeric vector of length equal to the number of cells
-in x, containing positive size factors for all cells.}
-
-\item{assay}{Integer scalar or string indicating which assay of x
-contains the expression values.}
+\item{...}{
+  Arguments passed on to \code{\link[=logNormCounts]{logNormCounts}}
+  \describe{
+    \item{\code{}}{}
+  }}
 
 \item{name}{String specifying the name to be used to store the result in the
 \link[SingleCellExperiment:reducedDims]{reducedDims} or
 \link[SeuratObject:Seurat-class]{reductions} of the output.}
+
+\item{assay}{Integer scalar or string indicating which assay of x
+contains the expression values.}
 
 \item{layer}{Name of the layer to get from the assay data.}
 
@@ -59,27 +54,10 @@ features in x are used.}
 specifying the batch of origin for each cell. Alternatively NULL if all cells
 belong to the same batch.}
 
-\item{batch_mode}{String indicating how batch should be handled when
-centering the size factors. If \code{"lowest"}, we downscale all batches to the
-coverage of the lowest batch. If \code{"perblock"}, we scale each batch to a mean
-of 1. Default: \code{"perblock"}.}
-
 \item{batch_method}{String indicating how batch should be handled (if it is
 supplied). \code{"block"} is equivalent to linear regression on x prior to PCA,
 while \code{"weight"} will only weight each batch so that they contribute equally
 to the PCA.}
-
-\item{force_integer}{Logical scalar indicating whether double-precision x
-should be forced into integers.}
-
-\item{no_sparse_copy}{Logical scalar indicating whether we should avoid a
-copy when object is a \link[Matrix:dgCMatrix-class]{dgCMatrix} This is more
-memory efficient if the data has already been loaded into memory. If TRUE,
-any setting of force.integer is ignored.}
-
-\item{threads}{Integer scalar specifying the number of threads to use. If
-\code{NULL}, all detected threads will be used. See
-\link[parallel:detectCores]{detectCores}.}
 }
 \value{
 \itemize{
