@@ -10,9 +10,7 @@ chan_mnn <- function(object, ...) UseMethod("chan_mnn")
 chan_mnn.SingleCellExperiment <- function(object, ...,
                                           dimred = "PCA", n_dimred = NULL,
                                           exprs_values = NULL,
-                                          size_factors = NULL,
                                           name = "corrected") {
-    size_factors <- size_factors %||% SingleCellExperiment::sizeFactors(object)
     mat <- .get_mat_from_sce(object, exprs_values, dimred, n_dimred)
     mnn <- chan_mnn(object = mat, ...)
     SingleCellExperiment::reducedDim(object, name) <- mnn

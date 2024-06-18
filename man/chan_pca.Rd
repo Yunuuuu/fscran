@@ -35,7 +35,7 @@ chan_pca(object, ...)
 }
 \arguments{
 \item{object}{A matrix-like object containing the counts (non-negative
-integers).}
+integers). Rows are features and columns are cells.}
 
 \item{...}{Additional arguments passed to default methods.}
 
@@ -68,9 +68,9 @@ specifying the batch of origin for each cell. Alternatively NULL if all cells
 belong to the same batch.}
 
 \item{norm_batch}{String indicating how batch should be handled when
-centering the size factors. If "lowest", we downscale all batches to the
-coverage of the lowest batch. If "perblock", we scale each batch to a mean of
-1.}
+centering the size factors. If \code{"lowest"}, we downscale all batches to the
+coverage of the lowest batch. If \code{"perblock"}, we scale each batch to a mean
+of 1.}
 
 \item{pca_batch}{String indicating how batch should be handled (if it is
 supplied). "block" is equivalent to linear regression on x prior to PCA,
@@ -81,9 +81,9 @@ the PCA.}
 should be forced into integers.}
 
 \item{no_sparse_copy}{Logical scalar indicating whether we should avoid a
-copy when x is a \link[Matrix:dgCMatrix-class]{dgCMatrix} This is more memory
-efficient if the data has already been loaded into memory. If TRUE, any
-setting of force.integer is ignored.}
+copy when object is a \link[Matrix:dgCMatrix-class]{dgCMatrix} This is more
+memory efficient if the data has already been loaded into memory. If TRUE,
+any setting of force.integer is ignored.}
 
 \item{threads}{Integer scalar specifying the number of threads to use.}
 }

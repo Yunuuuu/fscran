@@ -1,7 +1,7 @@
 #' Perform PCA on expression data
 #'
 #' @param object A matrix-like object containing the counts (non-negative
-#' integers).
+#' integers). Rows are features and columns are cells.
 #' @param ... Additional arguments passed to default methods.
 #' @export
 chan_pca <- function(object, ...) UseMethod("chan_pca")
@@ -40,9 +40,9 @@ chan_pca.SingleCellExperiment <- function(object, ...,
 #' specifying the batch of origin for each cell. Alternatively NULL if all cells
 #' belong to the same batch.
 #' @param norm_batch String indicating how batch should be handled when
-#' centering the size factors. If "lowest", we downscale all batches to the
-#' coverage of the lowest batch. If "perblock", we scale each batch to a mean of
-#' 1.
+#' centering the size factors. If `"lowest"`, we downscale all batches to the
+#' coverage of the lowest batch. If `"perblock"`, we scale each batch to a mean
+#' of 1.
 #' @param pca_batch String indicating how batch should be handled (if it is
 #' supplied). "block" is equivalent to linear regression on x prior to PCA,
 #' while "weight" will only weight each batch so that they contribute equally to
@@ -50,9 +50,9 @@ chan_pca.SingleCellExperiment <- function(object, ...,
 #' @param force_integer Logical scalar indicating whether double-precision x
 #' should be forced into integers.
 #' @param no_sparse_copy Logical scalar indicating whether we should avoid a
-#' copy when x is a [dgCMatrix][Matrix::dgCMatrix-class] This is more memory
-#' efficient if the data has already been loaded into memory. If TRUE, any
-#' setting of force.integer is ignored.
+#' copy when object is a [dgCMatrix][Matrix::dgCMatrix-class] This is more
+#' memory efficient if the data has already been loaded into memory. If TRUE,
+#' any setting of force.integer is ignored.
 #' @param threads Integer scalar specifying the number of threads to use.
 #' @export
 #' @rdname chan_pca
