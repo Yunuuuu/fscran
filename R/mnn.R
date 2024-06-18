@@ -24,7 +24,7 @@ chan_mnn.SingleCellExperiment <- function(object, ...,
 #' approximate neighbor search.
 #' @export
 #' @rdname chan_mnn
-chan_mnn.default <- function(object, batch = NULL, k = 20L,
+chan_mnn.default <- function(object, batch = NULL, k = 15L,
                              ..., approximate = TRUE, threads = 1L) {
     assert_bool(approximate)
     threads <- as.integer(threads)

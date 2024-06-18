@@ -28,7 +28,7 @@ chan_umap.SingleCellExperiment <- function(object, ...,
 #' @inheritParams scran.chan::runUMAP.chan
 #' @export
 #' @rdname chan_umap
-chan_umap.default <- function(object, n_neighbors = 20L,
+chan_umap.default <- function(object, n_neighbors = 15L,
                               min_dist = 0.01, n_epochs = -1L,
                               ...,
                               approximate = TRUE, seed = 123456L,

@@ -9,7 +9,7 @@ chan_umap(object, ...)
 
 \method{chan_umap}{default}(
   object,
-  n_neighbors = 20L,
+  n_neighbors = 15L,
   min_dist = 0.01,
   n_epochs = -1L,
   ...,

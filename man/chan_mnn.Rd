@@ -18,7 +18,7 @@ chan_mnn(object, ...)
   name = "corrected"
 )
 
-\method{chan_mnn}{default}(object, batch = NULL, k = 20L, ..., approximate = TRUE, threads = 1L)
+\method{chan_mnn}{default}(object, batch = NULL, k = 15L, ..., approximate = TRUE, threads = 1L)
 
 \method{chan_umap}{SingleCellExperiment}(
   object,
