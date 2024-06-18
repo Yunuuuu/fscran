@@ -19,7 +19,7 @@ runMNN(object, ...)
 
 \method{runMNN}{default}(
   object,
-  batch = NULL,
+  batch,
   k = 15L,
   ...,
   nmads = 3L,

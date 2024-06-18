@@ -33,7 +33,7 @@ runMNN.SingleCellExperiment <- function(object, ...,
 #' @seealso [mnnCorrect.chan][scran.chan::mnnCorrect.chan]
 #' @export
 #' @rdname runMNN
-runMNN.default <- function(object, batch = NULL, k = 15L, ...,
+runMNN.default <- function(object, batch, k = 15L, ...,
                            nmads = 3L, mass_cap = NULL,
                            order = NULL, reference_policy = NULL,
                            approximate = TRUE, threads = 1L) {

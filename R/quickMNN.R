@@ -21,7 +21,7 @@ quickMNN <- function(object, ...) UseMethod("quickMNN")
     )
     # run MNN -------------------------------
     runMNN(
-        object = object, dimred = "PCA",
+        object = object, batch = batch, dimred = "PCA",
         k = k, nmads = nmads, mass_cap = mass_cap,
         order = order, reference_policy = reference_policy,
         approximate = approximate, threads = threads
@@ -30,6 +30,6 @@ quickMNN <- function(object, ...) UseMethod("quickMNN")
 
 #' @inheritParams runMNN
 #' @inheritDotParams runPCA
-#' @export 
+#' @export
 #' @rdname quickMNN
 quickMNN.SingleCellExperiment <- .quickMNN
