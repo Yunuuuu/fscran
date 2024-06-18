@@ -34,3 +34,7 @@ quickMNN <- function(object, ...) UseMethod("quickMNN")
 #' @export
 #' @rdname quickMNN
 quickMNN.SingleCellExperiment <- .quickMNN
+
+#' @export
+#' @rdname quickMNN
+quickMNN.Seurat <- .quickMNN

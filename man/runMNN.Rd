@@ -3,6 +3,7 @@
 \name{runMNN}
 \alias{runMNN}
 \alias{runMNN.SingleCellExperiment}
+\alias{runMNN.Seurat}
 \alias{runMNN.default}
 \title{Fast mutual nearest neighbors correction with \code{scran.chan}}
 \usage{
@@ -14,6 +15,16 @@ runMNN(object, ...)
   dimred = "PCA",
   n_dimred = NULL,
   assay = NULL,
+  name = "corrected"
+)
+
+\method{runMNN}{Seurat}(
+  object,
+  ...,
+  dimred = "PCA",
+  n_dimred = NULL,
+  assay = NULL,
+  layer = NULL,
   name = "corrected"
 )
 
@@ -46,7 +57,10 @@ dimred is specified.}
 contains the expression values.}
 
 \item{name}{String specifying the name to be used to store the result in the
-\link[SingleCellExperiment:reducedDims]{reducedDims} of the output.}
+\link[SingleCellExperiment:reducedDims]{reducedDims} or
+\link[SeuratObject:Seurat-class]{reductions} of the output.}
+
+\item{layer}{Name of the layer to get from the assay data.}
 
 \item{batch}{Vector or factor of length equal to the number of cells,
 specifying the batch of origin for each cell. Alternatively NULL if all cells

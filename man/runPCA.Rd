@@ -3,6 +3,7 @@
 \name{runPCA}
 \alias{runPCA}
 \alias{runPCA.SingleCellExperiment}
+\alias{runPCA.Seurat}
 \alias{runPCA.default}
 \title{Perform Principal components analysis with \code{scran.chan}}
 \usage{
@@ -13,6 +14,16 @@ runPCA(object, ...)
   ...,
   size_factors = NULL,
   assay = "counts",
+  dimred = NULL,
+  n_dimred = NULL,
+  name = "PCA"
+)
+
+\method{runPCA}{Seurat}(
+  object,
+  ...,
+  assay = NULL,
+  layer = "counts",
   dimred = NULL,
   n_dimred = NULL,
   name = "PCA"
@@ -52,7 +63,10 @@ reduction results to use.}
 dimred is specified.}
 
 \item{name}{String specifying the name to be used to store the result in the
-\link[SingleCellExperiment:reducedDims]{reducedDims} of the output.}
+\link[SingleCellExperiment:reducedDims]{reducedDims} or
+\link[SeuratObject:Seurat-class]{reductions} of the output.}
+
+\item{layer}{Name of the layer to get from the assay data.}
 
 \item{d}{Integer scalar specifying the number of top PCs to obtain.}
 
@@ -88,8 +102,14 @@ any setting of force.integer is ignored.}
 \item{threads}{Integer scalar specifying the number of threads to use.}
 }
 \value{
-A numeric matrix where rows are cells and columns are the two
-dimensions of the embedding.
+\itemize{
+\item \code{default} method: A numeric matrix where rows are cells and columns are
+the two dimensions of the embedding.
+\item \code{SingleCellExperiment} method: embedding was added into
+\link[SingleCellExperiment:reducedDims]{reducedDims} named as \code{name}.
+\item \code{Seurat} method: embedding was added into
+\link[SeuratObject:Seurat-class]{reductions} named as \code{name}.
+}
 }
 \description{
 Perform Principal components analysis with \code{scran.chan}

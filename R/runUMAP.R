@@ -16,6 +16,27 @@ runUMAP.SingleCellExperiment <- function(object, ...,
     object
 }
 
+#' @inheritParams runPCA
+#' @export
+#' @rdname runUMAP
+runUMAP.Seurat <- function(object, ...,
+                           assay = NULL, layer = "counts",
+                           dimred = NULL, n_dimred = NULL,
+                           name = "UMAP") {
+    mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
+    umap <- runUMAP(object = mat, ...)
+    reduction_key <- SeuratObject::Key(name, quiet = TRUE)
+    rownames(umap) <- rownames(mat)
+    colnames(umap) <- paste0(reduction_key, seq_len(ncol(umap)))
+    object[[name]] <- SeuratObject::CreateDimReducObject(
+        embeddings = umap,
+        stdev = as.numeric(apply(umap, 2L, stats::sd)),
+        assay = .get_assay_from_seurat(object, assay, layer, dimred),
+        key = reduction_key
+    )
+    object
+}
+
 #' @param n_neighbors Integer scalar specifying the number of neighbors to use
 #' in the UMAP algorithm.
 #' @param min_dist Numeric scalar specifying the minimum distance between

@@ -1,3 +1,4 @@
+# we always regard features in row and cells in column
 .get_mat_from_sce <- function(x, assay, dimred, n_dimred) {
     if (!is.null(dimred)) {
         # value is expected to be a matrix or matrix-like object with number of
@@ -7,9 +8,33 @@
             if (length(n_dimred) == 1L) n_dimred <- seq_len(n_dimred)
             mat <- mat[, n_dimred, drop = FALSE]
         }
-        # we always regard features in row and cells in column
         t(mat)
     } else {
         SummarizedExperiment::assay(x, assay)
+    }
+}
+
+.get_mat_from_seurat <- function(x, assay, layer, dimred, n_dimred) {
+    if (!is.null(dimred)) {
+        # value is expected to be a matrix or matrix-like object with number of
+        # rows equal to ncol(x).
+        mat <- SeuratObject::Embeddings(x, reduction = dimred)
+        if (!is.null(n_dimred)) {
+            if (length(n_dimred) == 1L) n_dimred <- seq_len(n_dimred)
+            mat <- mat[, n_dimred, drop = FALSE]
+        }
+        t(mat)
+    } else {
+        SeuratObject::GetAssayData(x, assay = assay, layer = layer)
+    }
+}
+
+.get_assay_from_seurat <- function(x, assay, layer, dimred) {
+    if (!is.null(dimred)) {
+        SeuratObject::DefaultAssay(x[[dimred]])
+    } else if (!is.null(assay)) {
+        assay
+    } else {
+        SeuratObject::DefaultAssay(x)
     }
 }

@@ -16,6 +16,27 @@ runMNN.SingleCellExperiment <- function(object, ...,
     object
 }
 
+#' @inheritParams runPCA
+#' @export
+#' @rdname runMNN
+runMNN.Seurat <- function(object, ...,
+                          dimred = "PCA", n_dimred = NULL,
+                          assay = NULL, layer = NULL,
+                          name = "corrected") {
+    mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
+    umap <- runMNN(object = mat, ...)
+    reduction_key <- SeuratObject::Key(name, quiet = TRUE)
+    rownames(umap) <- rownames(mat)
+    colnames(umap) <- paste0(reduction_key, seq_len(ncol(umap)))
+    object[[name]] <- SeuratObject::CreateDimReducObject(
+        embeddings = umap,
+        stdev = as.numeric(apply(umap, 2L, stats::sd)),
+        assay = .get_assay_from_seurat(object, assay, layer, dimred),
+        key = reduction_key
+    )
+    object
+}
+
 #' @param k Integer scalar specifying the number of neighbors to use when
 #' identifying MNN pairs.
 #' @inheritParams scran.chan::mnnCorrect.chan

@@ -16,6 +16,26 @@ runTSNE.SingleCellExperiment <- function(object, ...,
     object
 }
 
+#' @inheritParams runPCA
+#' @export
+#' @rdname runTSNE
+runTSNE.Seurat <- function(object, ...,
+                           assay = NULL, layer = "counts",
+                           dimred = NULL, n_dimred = NULL,
+                           name = "TSNE") {
+    mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
+    umap <- runTSNE(object = mat, ...)
+    reduction_key <- SeuratObject::Key(name, quiet = TRUE)
+    rownames(umap) <- rownames(mat)
+    colnames(umap) <- paste0(reduction_key, seq_len(ncol(umap)))
+    object[[name]] <- SeuratObject::CreateDimReducObject(
+        embeddings = umap,
+        stdev = as.numeric(apply(umap, 2L, stats::sd)),
+        assay = .get_assay_from_seurat(object, assay, layer, dimred),
+        key = reduction_key
+    )
+    object
+}
 
 #' @param perplexity Numeric scalar specifying the perplexity to use in the
 #' t-SNE algorithm.

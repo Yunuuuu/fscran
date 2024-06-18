@@ -3,6 +3,7 @@
 \name{runTSNE}
 \alias{runTSNE}
 \alias{runTSNE.SingleCellExperiment}
+\alias{runTSNE.Seurat}
 \alias{runTSNE.default}
 \title{Compute the t-stochastic neighbor embedding with \code{scran.chan}}
 \usage{
@@ -14,6 +15,16 @@ runTSNE(object, ...)
   dimred = "PCA",
   n_dimred = NULL,
   assay = NULL,
+  name = "TSNE"
+)
+
+\method{runTSNE}{Seurat}(
+  object,
+  ...,
+  assay = NULL,
+  layer = "counts",
+  dimred = NULL,
+  n_dimred = NULL,
   name = "TSNE"
 )
 
@@ -45,7 +56,10 @@ dimred is specified.}
 contains the expression values.}
 
 \item{name}{String specifying the name to be used to store the result in the
-\link[SingleCellExperiment:reducedDims]{reducedDims} of the output.}
+\link[SingleCellExperiment:reducedDims]{reducedDims} or
+\link[SeuratObject:Seurat-class]{reductions} of the output.}
+
+\item{layer}{Name of the layer to get from the assay data.}
 
 \item{perplexity}{Numeric scalar specifying the perplexity to use in the
 t-SNE algorithm.}
@@ -69,8 +83,14 @@ perform.}
 \item{threads}{Integer scalar specifying the number of threads to use.}
 }
 \value{
-A numeric matrix where rows are cells and columns are the two
-dimensions of the embedding.
+\itemize{
+\item \code{default} method: A numeric matrix where rows are cells and columns are
+the two dimensions of the embedding.
+\item \code{SingleCellExperiment} method: embedding was added into
+\link[SingleCellExperiment:reducedDims]{reducedDims} named as \code{name}.
+\item \code{Seurat} method: embedding was added into
+\link[SeuratObject:Seurat-class]{reductions} named as \code{name}.
+}
 }
 \description{
 Compute the t-stochastic neighbor embedding with \code{scran.chan}

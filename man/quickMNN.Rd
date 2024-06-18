@@ -3,11 +3,26 @@
 \name{quickMNN}
 \alias{quickMNN}
 \alias{quickMNN.SingleCellExperiment}
+\alias{quickMNN.Seurat}
 \title{Quick fastMNN with \code{scran.chan}}
 \usage{
 quickMNN(object, ...)
 
 \method{quickMNN}{SingleCellExperiment}(
+  object,
+  batch = NULL,
+  ...,
+  k = 15L,
+  nmads = 3L,
+  mass_cap = NULL,
+  order = NULL,
+  reference_policy = NULL,
+  approximate = TRUE,
+  threads = 1L,
+  name = "corrected"
+)
+
+\method{quickMNN}{Seurat}(
   object,
   batch = NULL,
   ...,
@@ -60,7 +75,8 @@ approximate neighbor search.}
 \item{threads}{Integer scalar specifying the number of threads to use.}
 
 \item{name}{String specifying the name to be used to store the result in the
-\link[SingleCellExperiment:reducedDims]{reducedDims} of the output.}
+\link[SingleCellExperiment:reducedDims]{reducedDims} or
+\link[SeuratObject:Seurat-class]{reductions} of the output.}
 }
 \description{
 Quick fastMNN with \code{scran.chan}

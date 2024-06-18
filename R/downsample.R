@@ -13,6 +13,15 @@ downsample.SingleCellExperiment <- function(object, ...,
     downsample(object = mat, ...)
 }
 
+#' @export
+#' @rdname downsample
+downsample.SingleCellExperiment <- function(object, ...,
+                                            dimred = "PCA", n_dimred = NULL,
+                                            assay = NULL, layer = NULL) {
+    mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
+    downsample(object = mat, ...)
+}
+
 #' @inheritParams runPCA
 #' @inheritDotParams scran.chan::downsampleByNeighbors.chan -x -num.threads
 #' @seealso [downsampleByNeighbors.chan][scran.chan::downsampleByNeighbors.chan]

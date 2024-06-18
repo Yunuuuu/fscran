@@ -17,6 +17,7 @@ Remotes:
 Suggests: 
     cli,
     Matrix,
+    SeuratObject,
     SingleCellExperiment,
     SummarizedExperiment
 ByteCompile: true

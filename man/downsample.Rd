@@ -8,7 +8,23 @@
 \usage{
 downsample(object, ...)
 
-\method{downsample}{SingleCellExperiment}(object, ..., dimred = "PCA", n_dimred = NULL, assay = NULL)
+\method{downsample}{SingleCellExperiment}(
+  object,
+  ...,
+  dimred = "PCA",
+  n_dimred = NULL,
+  assay = NULL,
+  layer = NULL
+)
+
+\method{downsample}{SingleCellExperiment}(
+  object,
+  ...,
+  dimred = "PCA",
+  n_dimred = NULL,
+  assay = NULL,
+  layer = NULL
+)
 
 \method{downsample}{default}(object, ..., threads = 1L)
 }
@@ -32,6 +48,8 @@ dimred is specified.}
 
 \item{assay}{Integer scalar or string indicating which assay of x
 contains the expression values.}
+
+\item{layer}{Name of the layer to get from the assay data.}
 
 \item{threads}{Integer scalar specifying the number of threads to use.}
 }

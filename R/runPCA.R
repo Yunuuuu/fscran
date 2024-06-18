@@ -15,7 +15,8 @@ runPCA <- function(object, ...) UseMethod("runPCA")
 #' @param size_factors A numeric vector of length equal to the number of cells
 #' in x, containing positive size factors for all cells.
 #' @param name String specifying the name to be used to store the result in the
-#' [reducedDims][SingleCellExperiment::reducedDim] of the output.
+#' [reducedDims][SingleCellExperiment::reducedDim] or
+#' [reductions][SeuratObject::Seurat-class] of the output.
 #' @export
 #' @rdname runPCA
 runPCA.SingleCellExperiment <- function(object, ...,
@@ -27,6 +28,27 @@ runPCA.SingleCellExperiment <- function(object, ...,
     mat <- .get_mat_from_sce(object, assay, dimred, n_dimred)
     pca <- runPCA(object = mat, ..., size_factors = size_factors)
     SingleCellExperiment::reducedDim(object, name) <- pca
+    object
+}
+
+#' @param layer Name of the layer to get from the assay data.
+#' @export
+#' @rdname runPCA
+runPCA.Seurat <- function(object, ...,
+                          assay = NULL, layer = "counts",
+                          dimred = NULL, n_dimred = NULL,
+                          name = "PCA") {
+    mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
+    pca <- runPCA(object = mat, ...)
+    reduction_key <- SeuratObject::Key(name, quiet = TRUE)
+    rownames(pca) <- rownames(mat)
+    colnames(pca) <- paste0(reduction_key, seq_len(ncol(pca)))
+    object[[name]] <- SeuratObject::CreateDimReducObject(
+        embeddings = pca,
+        stdev = as.numeric(apply(pca, 2L, stats::sd)),
+        assay = .get_assay_from_seurat(object, assay, layer, dimred),
+        key = reduction_key
+    )
     object
 }
 
@@ -55,8 +77,13 @@ runPCA.SingleCellExperiment <- function(object, ...,
 #' any setting of force.integer is ignored.
 #' @param threads Integer scalar specifying the number of threads to use.
 #' @seealso [runPCA.chan][scran.chan::runPCA.chan]
-#' @return A numeric matrix where rows are cells and columns are the two
-#' dimensions of the embedding.
+#' @return
+#'  - `default` method: A numeric matrix where rows are cells and columns are
+#'                    the two dimensions of the embedding.
+#'  - `SingleCellExperiment` method: embedding was added into
+#'    [reducedDims][SingleCellExperiment::reducedDim] named as `name`.
+#'  - `Seurat` method: embedding was added into
+#'    [reductions][SeuratObject::Seurat-class] named as `name`.
 #' @export
 #' @rdname runPCA
 runPCA.default <- function(object, d = 50L, scale = FALSE, ...,

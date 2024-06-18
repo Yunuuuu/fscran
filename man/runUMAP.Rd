@@ -3,6 +3,7 @@
 \name{runUMAP}
 \alias{runUMAP}
 \alias{runUMAP.SingleCellExperiment}
+\alias{runUMAP.Seurat}
 \alias{runUMAP.default}
 \title{Compute the uniform manifold approximation and projection with \code{scran.chan}}
 \usage{
@@ -14,6 +15,16 @@ runUMAP(object, ...)
   dimred = "PCA",
   n_dimred = NULL,
   assay = NULL,
+  name = "UMAP"
+)
+
+\method{runUMAP}{Seurat}(
+  object,
+  ...,
+  assay = NULL,
+  layer = "counts",
+  dimred = NULL,
+  n_dimred = NULL,
   name = "UMAP"
 )
 
@@ -44,7 +55,10 @@ dimred is specified.}
 contains the expression values.}
 
 \item{name}{String specifying the name to be used to store the result in the
-\link[SingleCellExperiment:reducedDims]{reducedDims} of the output.}
+\link[SingleCellExperiment:reducedDims]{reducedDims} or
+\link[SeuratObject:Seurat-class]{reductions} of the output.}
+
+\item{layer}{Name of the layer to get from the assay data.}
 
 \item{n_neighbors}{Integer scalar specifying the number of neighbors to use
 in the UMAP algorithm.}
@@ -62,8 +76,14 @@ set to \code{-1}, an appropriate number of epochs is chosen based on ncol(x).}
 \item{threads}{Integer scalar specifying the number of threads to use.}
 }
 \value{
-A numeric matrix where rows are cells and columns are the two
-dimensions of the embedding.
+\itemize{
+\item \code{default} method: A numeric matrix where rows are cells and columns are
+the two dimensions of the embedding.
+\item \code{SingleCellExperiment} method: embedding was added into
+\link[SingleCellExperiment:reducedDims]{reducedDims} named as \code{name}.
+\item \code{Seurat} method: embedding was added into
+\link[SeuratObject:Seurat-class]{reductions} named as \code{name}.
+}
 }
 \description{
 Compute the uniform manifold approximation and projection with \code{scran.chan}
