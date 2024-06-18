@@ -9,16 +9,16 @@
 \usage{
 logNormCounts(object, ...)
 
-\method{logNormCounts}{SingleCellExperiment}(object, ..., size_factors = NULL, assay = "counts")
+\method{logNormCounts}{SingleCellExperiment}(object, size_factors = NULL, ..., assay = "counts")
 
 \method{logNormCounts}{Seurat}(object, ..., assay = NULL, layer = "counts")
 
 \method{logNormCounts}{default}(
   object,
-  ...,
   size_factors = NULL,
   batch = NULL,
   batch_mode = NULL,
+  ...,
   force_integer = TRUE,
   no_sparse_copy = TRUE,
   threads = NULL

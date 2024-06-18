@@ -10,9 +10,8 @@ logNormCounts <- function(object, ...) UseMethod("logNormCounts")
 #' contains the expression values.
 #' @export
 #' @rdname logNormCounts
-logNormCounts.SingleCellExperiment <- function(object, ...,
-                                               size_factors = NULL,
-                                               assay = "counts") {
+logNormCounts.SingleCellExperiment <- function(object, size_factors = NULL,
+                                               ..., assay = "counts") {
     size_factors <- size_factors %||% SingleCellExperiment::sizeFactors(object)
     mat <- .get_mat_from_sce(object, assay, NULL, NULL)
     logNormCounts(object = mat, size_factors = size_factors, ...)
@@ -21,8 +20,7 @@ logNormCounts.SingleCellExperiment <- function(object, ...,
 #' @param layer Name of the layer to get from the assay data.
 #' @export
 #' @rdname logNormCounts
-logNormCounts.Seurat <- function(object, ...,
-                                 assay = NULL, layer = "counts") {
+logNormCounts.Seurat <- function(object, ..., assay = NULL, layer = "counts") {
     mat <- .get_mat_from_seurat(object, assay, layer, NULL, NULL)
     logNormCounts(object = mat, ...)
 }
@@ -49,9 +47,8 @@ logNormCounts.Seurat <- function(object, ...,
 #' @seealso [logNormCounts.chan][scran.chan::logNormCounts.chan]
 #' @export
 #' @rdname logNormCounts
-logNormCounts.default <- function(object, ...,
-                                  size_factors = NULL,
-                                  batch = NULL, batch_mode = NULL,
+logNormCounts.default <- function(object, size_factors = NULL,
+                                  batch = NULL, batch_mode = NULL, ...,
                                   force_integer = TRUE, no_sparse_copy = TRUE,
                                   threads = NULL) {
     batch_mode <- match.arg(batch_mode, c("perblock", "lowest"))
