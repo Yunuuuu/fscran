@@ -1,0 +1,44 @@
+#' Fast mutual nearest neighbors correction with `scran.chan`
+#'
+#' @seealso [mnnCorrect.chan][scran.chan::mnnCorrect.chan]
+#' @export
+chan_mnn <- function(object, ...) UseMethod("chan_mnn")
+
+#' @inheritParams chan_pca
+#' @export
+#' @rdname chan_mnn
+chan_mnn.SingleCellExperiment <- function(object, ...,
+                                          dimred = "PCA", n_dimred = NULL,
+                                          exprs_values = NULL,
+                                          size_factors = NULL,
+                                          name = "corrected") {
+    size_factors <- size_factors %||% SingleCellExperiment::sizeFactors(object)
+    mat <- .get_mat_from_sce(object, exprs_values, dimred, n_dimred)
+    mnn <- chan_mnn(object = mat, ...)
+    SingleCellExperiment::reducedDim(object, name) <- mnn
+    object
+}
+
+#' @param k Integer scalar specifying the number of neighbors to use when
+#' identifying MNN pairs.
+#' @inheritDotParams scran.chan::mnnCorrect.chan -x -batch -k -approximate -num.threads
+#' @param approximate Logical scalar specifying whether to perform an
+#' approximate neighbor search.
+#' @export
+#' @rdname chan_mnn
+chan_mnn.default <- function(object, batch = NULL, k = 20L,
+                             ..., approximate = TRUE, threads = 1L) {
+    assert_bool(approximate)
+    threads <- as.integer(threads)
+    # run MNN --------------------------------------------------------
+    mnn_res <- scran.chan::mnnCorrect.chan(
+        x = object,
+        batch = batch, k = as.integer(k), ...,
+        approximate = approximate,
+        num.threads = threads
+    )
+    out <- t(mnn_res$corrected)
+    attr(out, "merge.order") <- mnn_res$merge.order
+    attr(out, "num.pairs") <- mnn_res$num.pairs
+    out
+}
