@@ -19,9 +19,9 @@ runPCA <- function(object, ...) UseMethod("runPCA")
 #' @export
 #' @rdname runPCA
 runPCA.SingleCellExperiment <- function(object, ...,
+                                        size_factors = NULL,
                                         assay = "counts",
                                         dimred = NULL, n_dimred = NULL,
-                                        size_factors = NULL,
                                         name = "PCA") {
     size_factors <- size_factors %||% SingleCellExperiment::sizeFactors(object)
     mat <- .get_mat_from_sce(object, assay, dimred, n_dimred)

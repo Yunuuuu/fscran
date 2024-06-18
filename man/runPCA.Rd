@@ -11,10 +11,10 @@ runPCA(object, ...)
 \method{runPCA}{SingleCellExperiment}(
   object,
   ...,
+  size_factors = NULL,
   assay = "counts",
   dimred = NULL,
   n_dimred = NULL,
-  size_factors = NULL,
   name = "PCA"
 )
 
@@ -39,6 +39,9 @@ integers). Rows are features and columns are cells.}
 
 \item{...}{Additional arguments passed to default methods.}
 
+\item{size_factors}{A numeric vector of length equal to the number of cells
+in x, containing positive size factors for all cells.}
+
 \item{assay}{Integer scalar or string indicating which assay of x
 contains the expression values.}
 
@@ -47,9 +50,6 @@ reduction results to use.}
 
 \item{n_dimred}{Integer scalar or vector specifying the dimensions to use if
 dimred is specified.}
-
-\item{size_factors}{A numeric vector of length equal to the number of cells
-in x, containing positive size factors for all cells.}
 
 \item{name}{String specifying the name to be used to store the result in the
 \link[SingleCellExperiment:reducedDims]{reducedDims} of the output.}
