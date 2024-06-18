@@ -1,4 +1,4 @@
-#' Fast mutual nearest neighbors correction with `scran.chan`
+#' Compute the uniform manifold approximation and projection with `scran.chan`
 #'
 #' @seealso [mnnCorrect.chan][scran.chan::mnnCorrect.chan]
 #' @export

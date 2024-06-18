@@ -1,4 +1,4 @@
-#' Perform PCA on expression data
+#' Perform Principal components analysis with `scran.chan`
 #'
 #' @param object A matrix-like object containing the counts (non-negative
 #' integers). Rows are features and columns are cells.

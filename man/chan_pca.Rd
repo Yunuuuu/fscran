@@ -4,7 +4,7 @@
 \alias{chan_pca}
 \alias{chan_pca.SingleCellExperiment}
 \alias{chan_pca.default}
-\title{Perform PCA on expression data}
+\title{Perform Principal components analysis with \code{scran.chan}}
 \usage{
 chan_pca(object, ...)
 
@@ -88,5 +88,5 @@ any setting of force.integer is ignored.}
 \item{threads}{Integer scalar specifying the number of threads to use.}
 }
 \description{
-Perform PCA on expression data
+Perform Principal components analysis with \code{scran.chan}
 }

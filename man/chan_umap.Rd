@@ -3,7 +3,7 @@
 \name{chan_umap}
 \alias{chan_umap}
 \alias{chan_umap.default}
-\title{Fast mutual nearest neighbors correction with \code{scran.chan}}
+\title{Compute the uniform manifold approximation and projection with \code{scran.chan}}
 \usage{
 chan_umap(object, ...)
 
@@ -40,7 +40,7 @@ set to \code{-1}, an appropriate number of epochs is chosen based on ncol(x).}
 \item{threads}{Integer scalar specifying the number of threads to use.}
 }
 \description{
-Fast mutual nearest neighbors correction with \code{scran.chan}
+Compute the uniform manifold approximation and projection with \code{scran.chan}
 }
 \seealso{
 \link[scran.chan:mnnCorrect.chan]{mnnCorrect.chan}
