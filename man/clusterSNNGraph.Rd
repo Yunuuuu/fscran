@@ -27,7 +27,7 @@ clusterSNNGraph(object, ...)
   ...,
   scheme = NULL,
   resolution = 1L,
-  objective = "modularity",
+  objective = NULL,
   steps = 4L,
   approximate = TRUE,
   seed = 123456L,
@@ -65,7 +65,7 @@ the SNN graph. This can be \code{"rank"} (default), \code{"jaccard"} or \code{"n
 multi-level or Leiden clustering.}
 
 \item{objective}{String specifying the objective function to use for Leiden
-clustering: "CPM" or "modularity".}
+clustering: "CPM" or "modularity" (default).}
 
 \item{steps}{Integer scalar specifying the number of steps to use for
 Walktrap clustering.}

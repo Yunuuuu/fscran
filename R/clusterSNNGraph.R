@@ -36,7 +36,7 @@ clusterSNNGraph.Seurat <- function(object, ...,
 #' @param steps Integer scalar specifying the number of steps to use for
 #' Walktrap clustering.
 #' @param objective String specifying the objective function to use for Leiden
-#' clustering: "CPM" or "modularity".
+#' clustering: "CPM" or "modularity" (default).
 #' @inheritParams scran.chan::clusterSNNGraph.chan
 #' @param seed Integer scalar specifying the seed to use for multi-level or
 #' Leiden clustering.
@@ -59,29 +59,30 @@ clusterSNNGraph.Seurat <- function(object, ...,
 #'      after each merge step.
 #' @export
 #' @rdname clusterSNNGraph
-clusterSNNGraph.default <- function(object, k = 15L, method = "leiden", ...,
-                                    scheme = NULL,
-                                    resolution = 1L,
-                                    objective = "modularity", steps = 4L,
+clusterSNNGraph.default <- function(object, k = 15L, method = "leiden",
+                                    ...,
+                                    scheme = NULL, resolution = 1L,
+                                    objective = NULL, steps = 4L,
                                     approximate = TRUE, seed = 123456L,
                                     threads = 1L) {
     assert_number(k)
     method <- match.arg(method, c("multilevel", "walktrap", "leiden"))
+    scheme <- match.arg(scheme, c("rank", "jaccard", "number"))
     assert_number(resolution)
+    objective <- match.arg(objective, c("modularity", "CPM"))
     assert_number(steps)
-    objective <- match.arg(objective, c("CPM", "modularity"))
     assert_bool(approximate)
     assert_number(seed)
     # run MNN --------------------------------------------------------
     clustering <- scran.chan::clusterSNNGraph.chan(
         x = object,
-        num.neighbors = as.integer(k), ...,
+        num.neighbors = as.integer(k),
         weight.scheme = scheme, method = method,
         resolution = resolution, objective = objective,
-        approximate = approximate,
-        num.threads = as.integer(threads),
+        steps = steps, seed = as.integer(seed),
+        drop = TRUE, approximate = approximate,
         downsample = NULL,
-        drop = TRUE, seed = as.integer(seed)
+        num.threads = as.integer(threads)
     )
     out <- clustering$membership
     for (i in setdiff(names(clustering), "membership")) {
