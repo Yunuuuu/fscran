@@ -19,10 +19,10 @@ runPCA <- function(object, ...) UseMethod("runPCA")
 #' @export
 #' @rdname runPCA
 runPCA.SingleCellExperiment <- function(object, ...,
-                                          exprs_values = "counts",
-                                          dimred = NULL, n_dimred = NULL,
-                                          size_factors = NULL,
-                                          name = "PCA") {
+                                        exprs_values = "counts",
+                                        dimred = NULL, n_dimred = NULL,
+                                        size_factors = NULL,
+                                        name = "PCA") {
     size_factors <- size_factors %||% SingleCellExperiment::sizeFactors(object)
     mat <- .get_mat_from_sce(object, exprs_values, dimred, n_dimred)
     pca <- runPCA(object = mat, ..., size_factors = size_factors)
@@ -58,10 +58,10 @@ runPCA.SingleCellExperiment <- function(object, ...,
 #' @export
 #' @rdname runPCA
 runPCA.default <- function(object, d = 50L, scale = FALSE, ...,
-                             size_factors = NULL, subset_row = NULL,
-                             batch = NULL, norm_batch = NULL, pca_batch = NULL,
-                             force_integer = TRUE, no_sparse_copy = TRUE,
-                             threads = 1L) {
+                           size_factors = NULL, subset_row = NULL,
+                           batch = NULL, norm_batch = NULL, pca_batch = NULL,
+                           force_integer = TRUE, no_sparse_copy = TRUE,
+                           threads = 1L) {
     # nromalization, adjust for differences in sequencing depth --------
     norm <- scran.chan::logNormCounts.chan(
         x = scran.chan::initializeSparseMatrix(
