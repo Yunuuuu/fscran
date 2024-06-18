@@ -20,8 +20,8 @@ runTSNE.SingleCellExperiment <- function(object, ...,
 #' @export
 #' @rdname runTSNE
 runTSNE.Seurat <- function(object, ...,
-                           assay = NULL, layer = "counts",
-                           dimred = NULL, n_dimred = NULL,
+                           dimred = "PCA", n_dimred = NULL,
+                           assay = NULL, layer = NULL,
                            name = "TSNE") {
     mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
     umap <- runTSNE(object = mat, ...)

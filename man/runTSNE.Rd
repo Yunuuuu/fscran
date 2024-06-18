@@ -21,10 +21,10 @@ runTSNE(object, ...)
 \method{runTSNE}{Seurat}(
   object,
   ...,
-  assay = NULL,
-  layer = "counts",
-  dimred = NULL,
+  dimred = "PCA",
   n_dimred = NULL,
+  assay = NULL,
+  layer = NULL,
   name = "TSNE"
 )
 

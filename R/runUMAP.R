@@ -20,8 +20,8 @@ runUMAP.SingleCellExperiment <- function(object, ...,
 #' @export
 #' @rdname runUMAP
 runUMAP.Seurat <- function(object, ...,
-                           assay = NULL, layer = "counts",
-                           dimred = NULL, n_dimred = NULL,
+                           dimred = "PCA", n_dimred = NULL,
+                           assay = NULL, layer = NULL,
                            name = "UMAP") {
     mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
     umap <- runUMAP(object = mat, ...)

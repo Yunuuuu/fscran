@@ -21,10 +21,10 @@ runUMAP(object, ...)
 \method{runUMAP}{Seurat}(
   object,
   ...,
-  assay = NULL,
-  layer = "counts",
-  dimred = NULL,
+  dimred = "PCA",
   n_dimred = NULL,
+  assay = NULL,
+  layer = NULL,
   name = "UMAP"
 )
 
