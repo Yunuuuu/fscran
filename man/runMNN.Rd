@@ -17,26 +17,23 @@ runMNN(object, ...)
   name = "corrected"
 )
 
-\method{runMNN}{default}(object, batch = NULL, k = 15L, ..., approximate = TRUE, threads = 1L)
+\method{runMNN}{default}(
+  object,
+  batch = NULL,
+  k = 15L,
+  nmads = 3L,
+  mass_cap = NULL,
+  order = NULL,
+  reference_policy = NULL,
+  approximate = TRUE,
+  threads = 1L
+)
 }
 \arguments{
 \item{object}{A matrix-like object containing the counts (non-negative
 integers). Rows are features and columns are cells.}
 
-\item{...}{
-  Arguments passed on to \code{\link[scran.chan:mnnCorrect.chan]{scran.chan::mnnCorrect.chan}}
-  \describe{
-    \item{\code{nmads}}{Numeric scalar specifying the number of MADs to use when computing correction vectors.}
-    \item{\code{mass.cap}}{Integer scalar specifying the cap on the number of observations to use for center of mass calculations.
-A value of 100,000 may be appropriate for speeding up correction of very large datasets.
-If this is set to NULL, no cap is used.}
-    \item{\code{order}}{Vector containing levels of \code{batch} in the desired merge order.
-If \code{NULL}, a suitable merge order is automatically determined.}
-    \item{\code{reference.policy}}{String specifying the policy to use to choose the first reference batch.
-This can be based on the largest batch (\code{"max-size"}), the most variable batch (\code{"max-variance"}), 
-some combination of those two (\code{"max-rss"}) or the first specified input (\code{"input"}).
-Only used for automatic merges, i.e., when \code{order=NULL}.}
-  }}
+\item{...}{Additional arguments passed to default methods.}
 
 \item{dimred}{String or integer scalar specifying the existing dimensionality
 reduction results to use.}
@@ -56,6 +53,22 @@ belong to the same batch.}
 
 \item{k}{Integer scalar specifying the number of neighbors to use when
 identifying MNN pairs.}
+
+\item{nmads}{Numeric scalar specifying the number of MADs to use when computing correction vectors.}
+
+\item{mass_cap}{Integer scalar specifying the cap on the number of
+observations to use for center of mass calculations. A value of 100,000 may
+be appropriate for speeding up correction of very large datasets. If this is
+set to \code{NULL}, no cap is used.}
+
+\item{order}{Vector containing levels of \code{batch} in the desired merge order.
+If \code{NULL}, a suitable merge order is automatically determined.}
+
+\item{reference_policy}{String specifying the policy to use to choose the
+first reference batch. This can be based on the largest batch ("max-size"),
+the most variable batch ("max-variance"), some combination of those two
+("max-rss") or the first specified input ("input"). Only used for automatic
+merges, i.e., when order=NULL.}
 
 \item{approximate}{Logical scalar specifying whether to perform an
 approximate neighbor search.}
