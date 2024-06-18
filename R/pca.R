@@ -87,6 +87,9 @@ chan_pca.default <- function(object, d = 50L, scale = FALSE, ...,
         batch.method = pca_batch,
         rotation = TRUE
     )
+    # batch_pcs$components:
+    # a numeric matrix containing the top principal components. Each row
+    # corresponds to a PC and each column corresponds to a cell.
     out <- t(batch_pcs$components)
     attr(out, "percentVar") <- batch_pcs$prop.variance
     attr(out, "rotation") <- batch_pcs$rotation

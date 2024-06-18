@@ -39,6 +39,13 @@ set to \code{-1}, an appropriate number of epochs is chosen based on ncol(x).}
 
 \item{threads}{Integer scalar specifying the number of threads to use.}
 }
+\value{
+By default, a numeric matrix where rows are cells and columns are the two dimensions of the embedding.
+
+If any of the parameters are vectors or \code{drop = FALSE}, we assume that the user is requesting a parameter sweep.
+A list is returned containing \code{parameters}, a data.frame with each relevant combination of parameters;
+and \code{results}, a list of numeric matrices of length equal to the number of rows of \code{parameters}, containing the embeddings for each combination.
+}
 \description{
 Compute the uniform manifold approximation and projection with \code{scran.chan}
 }

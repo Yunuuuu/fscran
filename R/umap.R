@@ -26,6 +26,7 @@ chan_umap.SingleCellExperiment <- function(object, ...,
 #' @param seed Integer scalar specifying the seed to use.
 #' @inheritParams chan_pca
 #' @inheritParams scran.chan::runUMAP.chan
+#' @inherit scran.chan::runUMAP.chan return
 #' @export
 #' @rdname chan_umap
 chan_umap.default <- function(object, n_neighbors = 15L,
