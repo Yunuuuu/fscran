@@ -38,3 +38,19 @@
         SeuratObject::DefaultAssay(x)
     }
 }
+
+add_dimred_to_sce <- function(object, value, name) {
+    SingleCellExperiment::reducedDim(object, name) <- value
+    object
+}
+
+add_dimred_to_seurat <- function(object, value, name, assay, layer, dimred) {
+    reduction_key <- SeuratObject::Key(name, quiet = TRUE)
+    object[[name]] <- SeuratObject::CreateDimReducObject(
+        embeddings = value,
+        stdev = as.numeric(apply(value, 2L, stats::sd)),
+        assay = .get_assay_from_seurat(object, assay, layer, dimred),
+        key = reduction_key
+    )
+    object
+}

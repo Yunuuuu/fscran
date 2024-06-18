@@ -40,7 +40,7 @@ quickMNN(object, ...)
 \item{object}{A matrix-like object. Rows are features and columns are cells.}
 
 \item{...}{
-  Arguments passed on to \code{\link[=runPCA]{runPCA}}
+  Arguments passed on to \code{\link[=logNormAndPCA]{logNormAndPCA}}
   \describe{
     \item{\code{}}{}
   }}
@@ -84,8 +84,7 @@ Quick fastMNN with \code{scran.chan}
 }
 \seealso{
 \itemize{
-\item \link[scran.chan:logNormCounts.chan]{logNormCounts.chan}
-\item \link[scran.chan:runPCA.chan]{runPCA.chan}
-\item \link[scran.chan:mnnCorrect.chan]{mnnCorrect.chan}
+\item \link{logNormAndPCA}
+\item \link{runMNN}
 }
 }

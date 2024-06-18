@@ -58,15 +58,28 @@ runMNN.default <- function(object, batch, k = 15L, ...,
                            nmads = 3L, mass_cap = NULL,
                            order = NULL, reference_policy = NULL,
                            approximate = TRUE, threads = NULL) {
-    assert_bool(approximate)
     # run MNN --------------------------------------------------------
+    .runMNN(
+        object = object,
+        batch = batch, k = k,
+        nmads = nmads, mass_cap = mass_cap,
+        order = order, 
+        reference_policy = reference_policy,
+        approximate = approximate,
+        threads = set_threads(threads)
+    )
+}
+
+.runMNN <- function(object, batch, k, nmads, mass_cap,
+                    order, reference_policy, approximate,
+                    threads) {
     mnn_res <- scran.chan::mnnCorrect.chan(
         x = object,
         batch = batch, k = as.integer(k),
         nmads = nmads, mass.cap = mass_cap,
         order = order, reference.policy = reference_policy,
         approximate = approximate,
-        num.threads = set_threads(threads)
+        num.threads = threads
     )
     out <- t(mnn_res$corrected)
     attr(out, "merge.order") <- mnn_res$merge.order

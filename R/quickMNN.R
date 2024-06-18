@@ -1,9 +1,8 @@
 #' Quick fastMNN with `scran.chan`
 #'
 #' @seealso
-#' - [logNormCounts.chan][scran.chan::logNormCounts.chan]
-#' - [runPCA.chan][scran.chan::runPCA.chan]
-#' - [mnnCorrect.chan][scran.chan::mnnCorrect.chan]
+#' - [logNormAndPCA]
+#' - [runMNN]
 #' @export
 quickMNN <- function(object, ...) UseMethod("quickMNN")
 
@@ -15,7 +14,7 @@ quickMNN <- function(object, ...) UseMethod("quickMNN")
     order = NULL, reference_policy = NULL,
     approximate = TRUE, threads = NULL, name = "corrected") {
     # dimensionality reduction --------------
-    object <- runPCA(
+    object <- logNormAndPCA(
         object = object, batch = batch, ...,
         threads = threads, name = "PCA"
     )
@@ -30,7 +29,7 @@ quickMNN <- function(object, ...) UseMethod("quickMNN")
 }
 
 #' @inheritParams runMNN
-#' @inheritDotParams runPCA
+#' @inheritDotParams logNormAndPCA
 #' @export
 #' @rdname quickMNN
 quickMNN.SingleCellExperiment <- .quickMNN

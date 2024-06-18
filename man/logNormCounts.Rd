@@ -25,7 +25,8 @@ logNormCounts(object, ...)
 )
 }
 \arguments{
-\item{object}{A matrix-like object. Rows are features and columns are cells.}
+\item{object}{A matrix-like object containing the counts (non-negative
+integers). Rows are features and columns are cells.}
 
 \item{...}{Additional arguments passed to default methods.}
 
@@ -64,4 +65,7 @@ An additional numeric \code{size.factors} vector is also present containing the 
 }
 \description{
 Log-normalize the counts
+}
+\seealso{
+\link[scran.chan:logNormCounts.chan]{logNormCounts.chan}
 }
