@@ -67,7 +67,8 @@ in the UMAP algorithm.}
 points.}
 
 \item{n_epochs}{Integer scalar specifying the number of epochs to perform. If
-set to \code{-1}, an appropriate number of epochs is chosen based on ncol(x).}
+set to \code{-1}, an appropriate number of epochs is chosen based on
+\code{ncol(object)}.}
 
 \item{approximate}{Logical scalar specifying whether to perform an approximate neighbor search.}
 

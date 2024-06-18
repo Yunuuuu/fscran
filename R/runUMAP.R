@@ -42,7 +42,8 @@ runUMAP.Seurat <- function(object, ...,
 #' @param min_dist Numeric scalar specifying the minimum distance between
 #' points.
 #' @param n_epochs Integer scalar specifying the number of epochs to perform. If
-#' set to `-1`, an appropriate number of epochs is chosen based on ncol(x).
+#' set to `-1`, an appropriate number of epochs is chosen based on
+#' `ncol(object)`.
 #' @param seed Integer scalar specifying the seed to use.
 #' @inheritParams runPCA
 #' @inheritParams scran.chan::runUMAP.chan
