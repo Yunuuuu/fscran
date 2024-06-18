@@ -72,5 +72,5 @@ and \code{results}, a list of numeric matrices of length equal to the number of 
 Compute the uniform manifold approximation and projection with \code{scran.chan}
 }
 \seealso{
-\link[scran.chan:mnnCorrect.chan]{mnnCorrect.chan}
+\link[scran.chan:runUMAP.chan]{runUMAP.chan}
 }

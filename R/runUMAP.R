@@ -26,7 +26,7 @@ runUMAP.SingleCellExperiment <- function(object, ...,
 #' @inheritParams runPCA
 #' @inheritParams scran.chan::runUMAP.chan
 #' @inherit scran.chan::runUMAP.chan return
-#' @seealso [mnnCorrect.chan][scran.chan::mnnCorrect.chan]
+#' @seealso [runUMAP.chan][scran.chan::runUMAP.chan]
 #' @export
 #' @rdname runUMAP
 runUMAP.default <- function(object, n_neighbors = 15L,
