@@ -30,6 +30,7 @@ runTSNE.SingleCellExperiment <- function(object, ...,
 #' perform.
 #' @inheritParams runUMAP
 #' @inheritParams scran.chan::runTSNE.chan
+#' @inherit runPCA return
 #' @seealso [runTSNE.chan][scran.chan::runTSNE.chan]
 #' @export
 #' @rdname runTSNE

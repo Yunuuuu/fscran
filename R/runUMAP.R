@@ -25,7 +25,7 @@ runUMAP.SingleCellExperiment <- function(object, ...,
 #' @param seed Integer scalar specifying the seed to use.
 #' @inheritParams runPCA
 #' @inheritParams scran.chan::runUMAP.chan
-#' @inherit scran.chan::runUMAP.chan return
+#' @inherit runPCA return
 #' @seealso [runUMAP.chan][scran.chan::runUMAP.chan]
 #' @export
 #' @rdname runUMAP

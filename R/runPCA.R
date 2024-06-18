@@ -55,6 +55,8 @@ runPCA.SingleCellExperiment <- function(object, ...,
 #' any setting of force.integer is ignored.
 #' @param threads Integer scalar specifying the number of threads to use.
 #' @seealso [runPCA.chan][scran.chan::runPCA.chan]
+#' @return A numeric matrix where rows are cells and columns are the two
+#' dimensions of the embedding.
 #' @export
 #' @rdname runPCA
 runPCA.default <- function(object, d = 50L, scale = FALSE, ...,

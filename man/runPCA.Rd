@@ -87,6 +87,10 @@ any setting of force.integer is ignored.}
 
 \item{threads}{Integer scalar specifying the number of threads to use.}
 }
+\value{
+A numeric matrix where rows are cells and columns are the two
+dimensions of the embedding.
+}
 \description{
 Perform Principal components analysis with \code{scran.chan}
 }
