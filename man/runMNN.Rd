@@ -38,7 +38,7 @@ runMNN(object, ...)
   order = NULL,
   reference_policy = NULL,
   approximate = TRUE,
-  threads = 1L
+  threads = NULL
 )
 }
 \arguments{
@@ -88,7 +88,9 @@ merges, i.e., when order=\code{NULL}.}
 \item{approximate}{Logical scalar specifying whether to perform an
 approximate neighbor search.}
 
-\item{threads}{Integer scalar specifying the number of threads to use.}
+\item{threads}{Integer scalar specifying the number of threads to use. If
+\code{NULL}, all detected threads will be used. See
+\link[parallel:detectCores]{detectCores}.}
 }
 \description{
 Fast mutual nearest neighbors correction with \code{scran.chan}

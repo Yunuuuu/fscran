@@ -41,7 +41,7 @@ runPCA(object, ...)
   batch_method = NULL,
   force_integer = TRUE,
   no_sparse_copy = TRUE,
-  threads = 1L
+  threads = NULL
 )
 }
 \arguments{
@@ -99,7 +99,9 @@ copy when object is a \link[Matrix:dgCMatrix-class]{dgCMatrix} This is more
 memory efficient if the data has already been loaded into memory. If TRUE,
 any setting of force.integer is ignored.}
 
-\item{threads}{Integer scalar specifying the number of threads to use.}
+\item{threads}{Integer scalar specifying the number of threads to use. If
+\code{NULL}, all detected threads will be used. See
+\link[parallel:detectCores]{detectCores}.}
 }
 \value{
 \itemize{

@@ -75,7 +75,9 @@ runPCA.Seurat <- function(object, ...,
 #' copy when object is a [dgCMatrix][Matrix::dgCMatrix-class] This is more
 #' memory efficient if the data has already been loaded into memory. If TRUE,
 #' any setting of force.integer is ignored.
-#' @param threads Integer scalar specifying the number of threads to use.
+#' @param threads Integer scalar specifying the number of threads to use. If
+#' `NULL`, all detected threads will be used. See
+#' [detectCores][parallel::detectCores].
 #' @seealso [runPCA.chan][scran.chan::runPCA.chan]
 #' @return
 #'  - `default` method: A numeric matrix where rows are cells and columns are
@@ -90,8 +92,9 @@ runPCA.default <- function(object, d = 50L, scale = FALSE, ...,
                            size_factors = NULL, subset_row = NULL,
                            batch = NULL, batch_mode = NULL, batch_method = NULL,
                            force_integer = TRUE, no_sparse_copy = TRUE,
-                           threads = 1L) {
+                           threads = NULL) {
     batch_mode <- match.arg(batch_mode, c("perblock", "lowest"))
+    threads <- set_threads(threads)
     # nromalization, adjust for differences in sequencing depth --------
     norm <- scran.chan::logNormCounts.chan(
         x = scran.chan::initializeSparseMatrix(

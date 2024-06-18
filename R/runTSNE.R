@@ -58,7 +58,7 @@ runTSNE.default <- function(object, perplexity = 30L, interpolate = NULL,
                             max_depth = 7L, max_iter = 500L,
                             ...,
                             approximate = TRUE, seed = 123456L,
-                            threads = 1L) {
+                            threads = NULL) {
     assert_number(perplexity)
     assert_number(interpolate, null_ok = TRUE)
     assert_number(max_depth)
@@ -73,6 +73,6 @@ runTSNE.default <- function(object, perplexity = 30L, interpolate = NULL,
         seed = as.integer(seed),
         approximate = approximate,
         downsample = NULL,
-        num.threads = as.integer(threads)
+        num.threads = set_threads(threads)
     )
 }

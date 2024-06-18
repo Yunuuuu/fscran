@@ -26,7 +26,7 @@ downsample(object, ...)
   layer = NULL
 )
 
-\method{downsample}{default}(object, ..., threads = 1L)
+\method{downsample}{default}(object, ..., threads = NULL)
 }
 \arguments{
 \item{object}{A matrix-like object containing the counts (non-negative
@@ -51,7 +51,9 @@ contains the expression values.}
 
 \item{layer}{Name of the layer to get from the assay data.}
 
-\item{threads}{Integer scalar specifying the number of threads to use.}
+\item{threads}{Integer scalar specifying the number of threads to use. If
+\code{NULL}, all detected threads will be used. See
+\link[parallel:detectCores]{detectCores}.}
 }
 \value{
 List containing:

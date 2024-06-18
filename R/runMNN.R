@@ -57,9 +57,8 @@ runMNN.Seurat <- function(object, ...,
 runMNN.default <- function(object, batch, k = 15L, ...,
                            nmads = 3L, mass_cap = NULL,
                            order = NULL, reference_policy = NULL,
-                           approximate = TRUE, threads = 1L) {
+                           approximate = TRUE, threads = NULL) {
     assert_bool(approximate)
-    threads <- as.integer(threads)
     # run MNN --------------------------------------------------------
     mnn_res <- scran.chan::mnnCorrect.chan(
         x = object,
@@ -67,7 +66,7 @@ runMNN.default <- function(object, batch, k = 15L, ...,
         nmads = nmads, mass.cap = mass_cap,
         order = order, reference.policy = reference_policy,
         approximate = approximate,
-        num.threads = threads
+        num.threads = set_threads(threads)
     )
     out <- t(mnn_res$corrected)
     attr(out, "merge.order") <- mnn_res$merge.order

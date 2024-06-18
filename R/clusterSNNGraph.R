@@ -64,7 +64,7 @@ clusterSNNGraph.default <- function(object, k = 15L, method = "leiden",
                                     scheme = NULL, resolution = 1L,
                                     objective = NULL, steps = 4L,
                                     approximate = TRUE, seed = 123456L,
-                                    threads = 1L) {
+                                    threads = NULL) {
     assert_number(k)
     method <- match.arg(method, c("multilevel", "walktrap", "leiden"))
     scheme <- match.arg(scheme, c("rank", "jaccard", "number"))
@@ -82,7 +82,7 @@ clusterSNNGraph.default <- function(object, k = 15L, method = "leiden",
         steps = steps, seed = as.integer(seed),
         drop = TRUE, approximate = approximate,
         downsample = NULL,
-        num.threads = as.integer(threads)
+        num.threads = set_threads(threads)
     )
     out <- clustering$membership
     for (i in setdiff(names(clustering), "membership")) {

@@ -28,9 +28,9 @@ downsample.SingleCellExperiment <- function(object, ...,
 #' @inherit scran.chan::downsampleByNeighbors.chan return
 #' @export
 #' @rdname downsample
-downsample.default <- function(object, ..., threads = 1L) {
+downsample.default <- function(object, ..., threads = NULL) {
     scran.chan::downsampleByNeighbors.chan(
         x = object, ...,
-        num.threads = threads
+        num.threads = set_threads(threads)
     )
 }

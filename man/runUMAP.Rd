@@ -36,7 +36,7 @@ runUMAP(object, ...)
   ...,
   approximate = TRUE,
   seed = 123456L,
-  threads = 1L
+  threads = NULL
 )
 }
 \arguments{
@@ -73,7 +73,9 @@ set to \code{-1}, an appropriate number of epochs is chosen based on ncol(x).}
 
 \item{seed}{Integer scalar specifying the seed to use.}
 
-\item{threads}{Integer scalar specifying the number of threads to use.}
+\item{threads}{Integer scalar specifying the number of threads to use. If
+\code{NULL}, all detected threads will be used. See
+\link[parallel:detectCores]{detectCores}.}
 }
 \value{
 \itemize{

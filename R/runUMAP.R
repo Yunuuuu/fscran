@@ -54,7 +54,7 @@ runUMAP.default <- function(object, n_neighbors = 15L,
                             min_dist = 0.01, n_epochs = -1L,
                             ...,
                             approximate = TRUE, seed = 123456L,
-                            threads = 1L) {
+                            threads = NULL) {
     assert_number(n_neighbors)
     assert_number(min_dist)
     assert_number(n_epochs)
@@ -67,6 +67,6 @@ runUMAP.default <- function(object, n_neighbors = 15L,
         seed = as.integer(seed),
         approximate = approximate,
         downsample = NULL,
-        num.threads = as.integer(threads)
+        num.threads = set_threads(threads)
     )
 }

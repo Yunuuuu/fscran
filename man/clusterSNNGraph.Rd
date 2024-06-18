@@ -31,7 +31,7 @@ clusterSNNGraph(object, ...)
   steps = 4L,
   approximate = TRUE,
   seed = 123456L,
-  threads = 1L
+  threads = NULL
 )
 }
 \arguments{
@@ -76,7 +76,9 @@ approximate neighbor search.}
 \item{seed}{Integer scalar specifying the seed to use for multi-level or
 Leiden clustering.}
 
-\item{threads}{Integer scalar specifying the number of threads to use.}
+\item{threads}{Integer scalar specifying the number of threads to use. If
+\code{NULL}, all detected threads will be used. See
+\link[parallel:detectCores]{detectCores}.}
 }
 \value{
 An integer vector with cluster assignments for each cell. Each method

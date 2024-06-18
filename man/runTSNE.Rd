@@ -37,7 +37,7 @@ runTSNE(object, ...)
   ...,
   approximate = TRUE,
   seed = 123456L,
-  threads = 1L
+  threads = NULL
 )
 }
 \arguments{
@@ -80,7 +80,9 @@ perform.}
 
 \item{seed}{Integer scalar specifying the seed to use.}
 
-\item{threads}{Integer scalar specifying the number of threads to use.}
+\item{threads}{Integer scalar specifying the number of threads to use. If
+\code{NULL}, all detected threads will be used. See
+\link[parallel:detectCores]{detectCores}.}
 }
 \value{
 \itemize{

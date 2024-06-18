@@ -13,7 +13,7 @@ quickMNN <- function(object, ...) UseMethod("quickMNN")
     # MNN arguments
     k = 15L, nmads = 3L, mass_cap = NULL,
     order = NULL, reference_policy = NULL,
-    approximate = TRUE, threads = 1L, name = "corrected") {
+    approximate = TRUE, threads = NULL, name = "corrected") {
     # dimensionality reduction --------------
     object <- runPCA(
         object = object, batch = batch, ...,
