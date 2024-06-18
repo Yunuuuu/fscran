@@ -13,7 +13,7 @@ runPCA(object, ...)
   object,
   ...,
   size_factors = NULL,
-  assay = "counts",
+  assay = "logcounts",
   dimred = NULL,
   n_dimred = NULL,
   name = "PCA"
@@ -23,7 +23,7 @@ runPCA(object, ...)
   object,
   ...,
   assay = NULL,
-  layer = "counts",
+  layer = "data",
   dimred = NULL,
   n_dimred = NULL,
   name = "PCA"
@@ -34,10 +34,8 @@ runPCA(object, ...)
   d = 50L,
   scale = FALSE,
   ...,
-  size_factors = NULL,
   subset_row = NULL,
   batch = NULL,
-  batch_mode = NULL,
   batch_method = NULL,
   force_integer = TRUE,
   no_sparse_copy = TRUE,
@@ -45,8 +43,7 @@ runPCA(object, ...)
 )
 }
 \arguments{
-\item{object}{A matrix-like object containing the counts (non-negative
-integers). Rows are features and columns are cells.}
+\item{object}{A matrix-like object. Rows are features and columns are cells.}
 
 \item{...}{Additional arguments passed to default methods.}
 
@@ -80,11 +77,6 @@ features in x are used.}
 \item{batch}{Vector or factor of length equal to the number of cells,
 specifying the batch of origin for each cell. Alternatively NULL if all cells
 belong to the same batch.}
-
-\item{batch_mode}{String indicating how batch should be handled when
-centering the size factors. If \code{"lowest"}, we downscale all batches to the
-coverage of the lowest batch. If \code{"perblock"}, we scale each batch to a mean
-of 1. Default: \code{"perblock"}.}
 
 \item{batch_method}{String indicating how batch should be handled (if it is
 supplied). \code{"block"} is equivalent to linear regression on x prior to PCA,

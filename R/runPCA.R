@@ -1,7 +1,6 @@
 #' Perform Principal components analysis with `scran.chan`
 #'
-#' @param object A matrix-like object containing the counts (non-negative
-#' integers). Rows are features and columns are cells.
+#' @param object A matrix-like object. Rows are features and columns are cells.
 #' @param ... Additional arguments passed to default methods.
 #' @export
 runPCA <- function(object, ...) UseMethod("runPCA")
@@ -21,12 +20,11 @@ runPCA <- function(object, ...) UseMethod("runPCA")
 #' @rdname runPCA
 runPCA.SingleCellExperiment <- function(object, ...,
                                         size_factors = NULL,
-                                        assay = "counts",
+                                        assay = "logcounts",
                                         dimred = NULL, n_dimred = NULL,
                                         name = "PCA") {
-    size_factors <- size_factors %||% SingleCellExperiment::sizeFactors(object)
     mat <- .get_mat_from_sce(object, assay, dimred, n_dimred)
-    pca <- runPCA(object = mat, ..., size_factors = size_factors)
+    pca <- runPCA(object = mat, ...)
     SingleCellExperiment::reducedDim(object, name) <- pca
     object
 }
@@ -35,7 +33,7 @@ runPCA.SingleCellExperiment <- function(object, ...,
 #' @export
 #' @rdname runPCA
 runPCA.Seurat <- function(object, ...,
-                          assay = NULL, layer = "counts",
+                          assay = NULL, layer = "data",
                           dimred = NULL, n_dimred = NULL,
                           name = "PCA") {
     mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
@@ -61,10 +59,6 @@ runPCA.Seurat <- function(object, ...,
 #' @param batch Vector or factor of length equal to the number of cells,
 #' specifying the batch of origin for each cell. Alternatively NULL if all cells
 #' belong to the same batch.
-#' @param batch_mode String indicating how batch should be handled when
-#' centering the size factors. If `"lowest"`, we downscale all batches to the
-#' coverage of the lowest batch. If `"perblock"`, we scale each batch to a mean
-#' of 1. Default: `"perblock"`.
 #' @param batch_method String indicating how batch should be handled (if it is
 #' supplied). `"block"` is equivalent to linear regression on x prior to PCA,
 #' while `"weight"` will only weight each batch so that they contribute equally
@@ -89,14 +83,13 @@ runPCA.Seurat <- function(object, ...,
 #' @export
 #' @rdname runPCA
 runPCA.default <- function(object, d = 50L, scale = FALSE, ...,
-                           size_factors = NULL, subset_row = NULL,
-                           batch = NULL, batch_mode = NULL, batch_method = NULL,
+                           subset_row = NULL, batch = NULL, batch_method = NULL,
                            force_integer = TRUE, no_sparse_copy = TRUE,
                            threads = NULL) {
-    batch_mode <- match.arg(batch_mode, c("perblock", "lowest"))
     threads <- set_threads(threads)
-    # nromalization, adjust for differences in sequencing depth --------
-    norm <- scran.chan::logNormCounts.chan(
+
+    # dimensionality reduction -----------------------------------------
+    batch_pcs <- scran.chan::runPCA.chan(
         x = scran.chan::initializeSparseMatrix(
             object,
             force.integer = force_integer,
@@ -104,15 +97,6 @@ runPCA.default <- function(object, d = 50L, scale = FALSE, ...,
             by.column = TRUE,
             num.threads = threads
         ),
-        size.factors = size_factors,
-        batch = batch,
-        batch.mode = batch_mode,
-        num.threads = threads
-    )
-
-    # dimensionality reduction -----------------------------------------
-    batch_pcs <- scran.chan::runPCA.chan(
-        x = norm,
         num.comp = as.integer(d),
         subset = subset_row,
         scale = scale,
