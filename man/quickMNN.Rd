@@ -17,7 +17,8 @@ quickMNN(object, ...)
   order = NULL,
   reference_policy = NULL,
   approximate = TRUE,
-  threads = 1L
+  threads = 1L,
+  name = "corrected"
 )
 }
 \arguments{
@@ -57,6 +58,9 @@ merges, i.e., when order=\code{NULL}.}
 approximate neighbor search.}
 
 \item{threads}{Integer scalar specifying the number of threads to use.}
+
+\item{name}{String specifying the name to be used to store the result in the
+\link[SingleCellExperiment:reducedDims]{reducedDims} of the output.}
 }
 \description{
 Quick fastMNN with \code{scran.chan}
