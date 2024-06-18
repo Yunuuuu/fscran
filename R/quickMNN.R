@@ -9,7 +9,7 @@ quickMNN <- function(object, ...) UseMethod("quickMNN")
 
 .quickMNN <- function(
     object, # PCA arguments
-    batch = NULL, ...,
+    batch, ...,
     # MNN arguments
     k = 15L, nmads = 3L, mass_cap = NULL,
     order = NULL, reference_policy = NULL,

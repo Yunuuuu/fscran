@@ -10,7 +10,7 @@ quickMNN(object, ...)
 
 \method{quickMNN}{SingleCellExperiment}(
   object,
-  batch = NULL,
+  batch,
   ...,
   k = 15L,
   nmads = 3L,
@@ -24,7 +24,7 @@ quickMNN(object, ...)
 
 \method{quickMNN}{Seurat}(
   object,
-  batch = NULL,
+  batch,
   ...,
   k = 15L,
   nmads = 3L,
