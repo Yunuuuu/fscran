@@ -42,7 +42,7 @@ runPCA.SingleCellExperiment <- function(object, ...,
 #' @param norm_batch String indicating how batch should be handled when
 #' centering the size factors. If `"lowest"`, we downscale all batches to the
 #' coverage of the lowest batch. If `"perblock"`, we scale each batch to a mean
-#' of 1.
+#' of 1. Default: `"perblock"`.
 #' @param pca_batch String indicating how batch should be handled (if it is
 #' supplied). "block" is equivalent to linear regression on x prior to PCA,
 #' while "weight" will only weight each batch so that they contribute equally to
@@ -64,6 +64,7 @@ runPCA.default <- function(object, d = 50L, scale = FALSE, ...,
                            batch = NULL, norm_batch = NULL, pca_batch = NULL,
                            force_integer = TRUE, no_sparse_copy = TRUE,
                            threads = 1L) {
+    norm_batch <- match.arg(norm_batch, c("perblock", "lowest"))
     # nromalization, adjust for differences in sequencing depth --------
     norm <- scran.chan::logNormCounts.chan(
         x = scran.chan::initializeSparseMatrix(

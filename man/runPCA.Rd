@@ -70,7 +70,7 @@ belong to the same batch.}
 \item{norm_batch}{String indicating how batch should be handled when
 centering the size factors. If \code{"lowest"}, we downscale all batches to the
 coverage of the lowest batch. If \code{"perblock"}, we scale each batch to a mean
-of 1.}
+of 1. Default: \code{"perblock"}.}
 
 \item{pca_batch}{String indicating how batch should be handled (if it is
 supplied). "block" is equivalent to linear regression on x prior to PCA,
