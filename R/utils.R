@@ -2,7 +2,7 @@ set_threads <- function(threads,
                         arg = rlang::caller_arg(threads),
                         call = rlang::caller_call()) {
     assert_(threads,
-        function(x) is_scalar_numeric(x) && x > 0L,
+        function(x) is_scalar_numeric(x) && x >= 1L,
         "a positive number",
         null_ok = TRUE, arg = arg, call = call
     )
