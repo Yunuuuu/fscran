@@ -12,8 +12,7 @@ runUMAP.SingleCellExperiment <- function(object, ...,
                                          name = "UMAP") {
     mat <- .get_mat_from_sce(object, assay, dimred, n_dimred)
     umap <- runUMAP(object = mat, ...)
-    SingleCellExperiment::reducedDim(object, name) <- umap
-    object
+    add_dimred_to_sce(object, umap, name)
 }
 
 #' @inheritParams runPCA
@@ -25,16 +24,7 @@ runUMAP.Seurat <- function(object, ...,
                            name = "UMAP") {
     mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
     umap <- runUMAP(object = mat, ...)
-    reduction_key <- SeuratObject::Key(name, quiet = TRUE)
-    rownames(umap) <- rownames(mat)
-    colnames(umap) <- paste0(reduction_key, seq_len(ncol(umap)))
-    object[[name]] <- SeuratObject::CreateDimReducObject(
-        embeddings = umap,
-        stdev = as.numeric(apply(umap, 2L, stats::sd)),
-        assay = .get_assay_from_seurat(object, assay, layer, dimred),
-        key = reduction_key
-    )
-    object
+    add_dimred_to_seurat(object, umap, name, assay, layer, dimred)
 }
 
 #' @param n_neighbors Integer scalar specifying the number of neighbors to use

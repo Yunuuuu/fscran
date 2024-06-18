@@ -12,8 +12,7 @@ runTSNE.SingleCellExperiment <- function(object, ...,
                                          name = "TSNE") {
     mat <- .get_mat_from_sce(object, assay, dimred, n_dimred)
     tsne <- runTSNE(object = mat, ...)
-    SingleCellExperiment::reducedDim(object, name) <- tsne
-    object
+    add_dimred_to_sce(object, tsne, name)
 }
 
 #' @inheritParams runPCA
@@ -24,17 +23,8 @@ runTSNE.Seurat <- function(object, ...,
                            assay = NULL, layer = NULL,
                            name = "TSNE") {
     mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
-    umap <- runTSNE(object = mat, ...)
-    reduction_key <- SeuratObject::Key(name, quiet = TRUE)
-    rownames(umap) <- rownames(mat)
-    colnames(umap) <- paste0(reduction_key, seq_len(ncol(umap)))
-    object[[name]] <- SeuratObject::CreateDimReducObject(
-        embeddings = umap,
-        stdev = as.numeric(apply(umap, 2L, stats::sd)),
-        assay = .get_assay_from_seurat(object, assay, layer, dimred),
-        key = reduction_key
-    )
-    object
+    tsne <- runTSNE(object = mat, ...)
+    add_dimred_to_seurat(object, tsne, name, assay, layer, dimred)
 }
 
 #' @param perplexity Numeric scalar specifying the perplexity to use in the

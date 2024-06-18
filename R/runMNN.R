@@ -12,8 +12,7 @@ runMNN.SingleCellExperiment <- function(object, ...,
                                         name = "corrected") {
     mat <- .get_mat_from_sce(object, assay, dimred, n_dimred)
     mnn <- runMNN(object = mat, ...)
-    SingleCellExperiment::reducedDim(object, name) <- mnn
-    object
+    add_dimred_to_sce(object, mnn, name)
 }
 
 #' @inheritParams runPCA
@@ -24,17 +23,8 @@ runMNN.Seurat <- function(object, ...,
                           assay = NULL, layer = NULL,
                           name = "corrected") {
     mat <- .get_mat_from_seurat(object, assay, layer, dimred, n_dimred)
-    umap <- runMNN(object = mat, ...)
-    reduction_key <- SeuratObject::Key(name, quiet = TRUE)
-    rownames(umap) <- rownames(mat)
-    colnames(umap) <- paste0(reduction_key, seq_len(ncol(umap)))
-    object[[name]] <- SeuratObject::CreateDimReducObject(
-        embeddings = umap,
-        stdev = as.numeric(apply(umap, 2L, stats::sd)),
-        assay = .get_assay_from_seurat(object, assay, layer, dimred),
-        key = reduction_key
-    )
-    object
+    mnn <- runMNN(object = mat, ...)
+    add_dimred_to_seurat(object, mnn, name, assay, layer, dimred)
 }
 
 #' @param k Integer scalar specifying the number of neighbors to use when
@@ -63,7 +53,7 @@ runMNN.default <- function(object, batch, k = 15L, ...,
         object = object,
         batch = batch, k = k,
         nmads = nmads, mass_cap = mass_cap,
-        order = order, 
+        order = order,
         reference_policy = reference_policy,
         approximate = approximate,
         threads = set_threads(threads)
