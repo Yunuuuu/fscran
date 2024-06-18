@@ -57,7 +57,7 @@ runTSNE.Seurat <- function(object, ...,
 runTSNE.default <- function(object, perplexity = 30L, interpolate = NULL,
                             max_depth = 7L, max_iter = 500L,
                             ...,
-                            approximate = TRUE, seed = 123456L,
+                            approximate = TRUE, seed = 1234L,
                             threads = NULL) {
     assert_number(perplexity)
     assert_number(interpolate, null_ok = TRUE)

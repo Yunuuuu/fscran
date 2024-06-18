@@ -36,7 +36,7 @@ runTSNE(object, ...)
   max_iter = 500L,
   ...,
   approximate = TRUE,
-  seed = 123456L,
+  seed = 1234L,
   threads = NULL
 )
 }

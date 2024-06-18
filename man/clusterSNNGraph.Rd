@@ -30,7 +30,7 @@ clusterSNNGraph(object, ...)
   objective = NULL,
   steps = 4L,
   approximate = TRUE,
-  seed = 123456L,
+  seed = 1234L,
   threads = NULL
 )
 }

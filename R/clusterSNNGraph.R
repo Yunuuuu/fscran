@@ -63,7 +63,7 @@ clusterSNNGraph.default <- function(object, k = 15L, method = "leiden",
                                     ...,
                                     scheme = NULL, resolution = 1L,
                                     objective = NULL, steps = 4L,
-                                    approximate = TRUE, seed = 123456L,
+                                    approximate = TRUE, seed = 1234L,
                                     threads = NULL) {
     assert_number(k)
     method <- match.arg(method, c("multilevel", "walktrap", "leiden"))

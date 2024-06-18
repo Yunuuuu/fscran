@@ -35,7 +35,7 @@ runUMAP(object, ...)
   n_epochs = -1L,
   ...,
   approximate = TRUE,
-  seed = 123456L,
+  seed = 1234L,
   threads = NULL
 )
 }
