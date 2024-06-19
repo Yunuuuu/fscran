@@ -6,14 +6,14 @@ scoreMarkers <- function(object, ...) UseMethod("scoreMarkers")
 #' @export
 #' @rdname scoreMarkers
 scoreMarkers.SingleCellExperiment <- function(object, ..., assay = "logcounts") {
-    mat <- .get_mat_from_sce(object, assay, NULL, NULL)
+    mat <- .get_mat_from_sce(object, assay)
     scoreMarkers(object = mat, ...)
 }
 
 #' @export
 #' @rdname scoreMarkers
 scoreMarkers.Seurat <- function(object, ..., assay = NULL, layer = "data") {
-    mat <- .get_mat_from_seurat(object, assay, layer, NULL, NULL)
+    mat <- .get_mat_from_seurat(object, assay, layer)
     scoreMarkers(object = mat, ...)
 }
 

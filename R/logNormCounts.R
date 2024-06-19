@@ -13,7 +13,7 @@ logNormCounts <- function(object, ...) UseMethod("logNormCounts")
 logNormCounts.SingleCellExperiment <- function(object, size_factors = NULL,
                                                ..., assay = "counts") {
     size_factors <- size_factors %||% SingleCellExperiment::sizeFactors(object)
-    mat <- .get_mat_from_sce(object, assay, NULL, NULL)
+    mat <- .get_mat_from_sce(object, assay)
     logNormCounts(object = mat, size_factors = size_factors, ...)
 }
 
@@ -21,7 +21,7 @@ logNormCounts.SingleCellExperiment <- function(object, size_factors = NULL,
 #' @export
 #' @rdname logNormCounts
 logNormCounts.Seurat <- function(object, ..., assay = NULL, layer = "counts") {
-    mat <- .get_mat_from_seurat(object, assay, layer, NULL, NULL)
+    mat <- .get_mat_from_seurat(object, assay, layer)
     logNormCounts(object = mat, ...)
 }
 
