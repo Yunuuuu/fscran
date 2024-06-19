@@ -72,6 +72,7 @@ scoreMarkers.Seurat <- function(object, ..., assay = NULL, layer = "data") {
 #' A. Note that rows correspond to the order in `object`. `sort_by` has no
 #' effect on these data frames.
 #'
+#' @seealso [scoreMarkers.chan][scran.chan::scoreMarkers.chan]
 #' @rdname scoreMarkers
 #' @export
 scoreMarkers.default <- function(object, groups, lfc = 0L,
@@ -83,6 +84,7 @@ scoreMarkers.default <- function(object, groups, lfc = 0L,
                                  no_sparse_copy = TRUE,
                                  threads = NULL) {
     rlang::check_dots_empty()
+    threads <- set_threads(threads)
     out <- scran.chan::scoreMarkers.chan(
         x = scran.chan::initializeSparseMatrix(
             object,
@@ -93,7 +95,7 @@ scoreMarkers.default <- function(object, groups, lfc = 0L,
         ),
         groups = groups, batch = batch,
         lfc = lfc,
-        num.threads = set_threads(threads),
+        num.threads = threads,
         simple.means.only = simple_means_only,
         sort.by = sort_by,
         all.pairwise = all_pairwise

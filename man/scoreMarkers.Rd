@@ -130,3 +130,6 @@ and is useful for identifying the combination of best genes that distinguish a c
 Cohen's d and the AUC are generally give quite similar rankings,
 but both are reported for some verisimilitude.
 }
+\seealso{
+\link[scran.chan:scoreMarkers.chan]{scoreMarkers.chan}
+}
