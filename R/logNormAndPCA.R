@@ -31,7 +31,8 @@ logNormAndPCA.Seurat <- function(object, ...,
 #' @rdname logNormAndPCA
 logNormAndPCA.default <- function(object, d = 50L, scale = FALSE, ...,
                                   subset_row = NULL,
-                                  batch = NULL, batch_method = NULL) {
+                                  batch = NULL, batch_method = NULL,
+                                  threads = NULL) {
     threads <- set_threads(threads)
     # nromalization, adjust for differences in sequencing depth --------
     logcounts <- logNormCounts(

@@ -20,7 +20,8 @@ logNormAndPCA(object, ...)
   ...,
   subset_row = NULL,
   batch = NULL,
-  batch_method = NULL
+  batch_method = NULL,
+  threads = NULL
 )
 }
 \arguments{
@@ -58,6 +59,10 @@ belong to the same batch.}
 supplied). \code{"block"} is equivalent to linear regression on x prior to PCA,
 while \code{"weight"} will only weight each batch so that they contribute equally
 to the PCA.}
+
+\item{threads}{Integer scalar specifying the number of threads to use. If
+\code{NULL}, all detected threads will be used. See
+\link[parallel:detectCores]{detectCores}.}
 }
 \value{
 \itemize{
