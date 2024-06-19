@@ -25,7 +25,10 @@ downsample.SingleCellExperiment <- function(object, ...,
 #' @inheritParams runPCA
 #' @inheritDotParams scran.chan::downsampleByNeighbors.chan -x -num.threads
 #' @seealso [downsampleByNeighbors.chan][scran.chan::downsampleByNeighbors.chan]
-#' @inherit scran.chan::downsampleByNeighbors.chan return
+#' @return List containing:
+#' - `chosen`: an integer vector containing the column indices of x to retain.
+#' - `assigned`: integer vector of length equal to `ncol(object)`, containing
+#'   the column index of the representative cell for each cell in `object`. 
 #' @export
 #' @rdname downsample
 downsample.default <- function(object, ..., threads = NULL) {

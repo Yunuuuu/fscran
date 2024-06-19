@@ -57,9 +57,9 @@ contains the expression values.}
 \value{
 List containing:
 \itemize{
-\item \code{chosen}, an integer vector containing the column indices of \code{x} to retain.
-\item \code{assigned}, integer vector of length equal to \code{ncol(x)},
-containing the column index of the representative cell for each cell in \code{x}.
+\item \code{chosen}: an integer vector containing the column indices of x to retain.
+\item \code{assigned}: integer vector of length equal to \code{ncol(object)}, containing
+the column index of the representative cell for each cell in \code{object}.
 }
 }
 \description{
