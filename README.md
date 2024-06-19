@@ -1,12 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# fscran
+# Fast single-cell RNA-seq data analysis (fscran)
 
 <!-- badges: start -->
 <!-- badges: end -->
-
-Fast single-cell RNA-seq data analysis
 
 ## Installation
 
@@ -27,12 +25,13 @@ pak::pkg_install("Yunuuuu/fscran")
 
 ## Introduction
 
-`scran.chan` is a package provides methods for an end-to-end analysis of
-a single-cell RNA-sequencing (scRNA-seq) analysis, starting from the
-count matrix and finishes with clusters, markers, and various embeddings
-(i.e., t-SNE and UMAP). It’s pretty fast and memory-efficient. The
-`fscran` package serves as a bridging tool connecting the `scran.chan`
-package with either `Seurat` or `SingleCellExperiment` objects.
+[scran.chan](https://github.com/LTLA/scran.chan) is a package provides
+methods for an end-to-end analysis of a single-cell RNA-sequencing
+(scRNA-seq) analysis, starting from the count matrix and finishes with
+clusters, markers, and various embeddings (i.e., t-SNE and UMAP). It’s
+pretty fast and memory-efficient. The `fscran` package serves as a
+bridging tool connecting the `scran.chan` package with either `Seurat`
+or `SingleCellExperiment` objects.
 
 ## Available functions
 
