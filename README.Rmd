@@ -6,10 +6,10 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+    collapse = TRUE,
+    comment = "#>",
+    fig.path = "man/figures/README-",
+    out.width = "100%"
 )
 ```
 
@@ -56,6 +56,7 @@ with either `Seurat` or `SingleCellExperiment` objects.
 | `downsample`      | Downsample cells based on their neighbors     |
 | `runTSNE`         | t-stochastic neighbor embedding               |
 | `runUMAP`         | uniform manifold approximation and projection |
-| `scoreMarkers`    | Score marker genes                            |
 | `clusterSNNGraph` | Graph-based clustering                        |
 | `subCluster`      | Find subclusters                              |
+| `scoreMarkers`    | Score marker genes                            |
+| `scoreFeatureSet` | Score feature set activity for each cell      |

@@ -45,6 +45,7 @@ or `SingleCellExperiment` objects.
 | `downsample`      | Downsample cells based on their neighbors     |
 | `runTSNE`         | t-stochastic neighbor embedding               |
 | `runUMAP`         | uniform manifold approximation and projection |
-| `scoreMarkers`    | Score marker genes                            |
 | `clusterSNNGraph` | Graph-based clustering                        |
 | `subCluster`      | Find subclusters                              |
+| `scoreMarkers`    | Score marker genes                            |
+| `scoreFeatureSet` | Score feature set activity for each cell      |
