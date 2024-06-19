@@ -30,7 +30,7 @@ logNormAndPCA(object, ...)
 \item{...}{\itemize{
 \item \code{default} method: additional argumentds passed to \link{logNormCounts}.
 \item \code{SingleCellExperiment} and \code{Seurat} method: additional arguments passed to
-default methods.
+\code{default} methods.
 }}
 
 \item{name}{String specifying the name to be used to store the result in the

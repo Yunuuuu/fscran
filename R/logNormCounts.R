@@ -5,7 +5,7 @@
 #' @param ...
 #'  - `default` method: cannot be used.
 #'  - `SingleCellExperiment` and `Seurat` method: additional arguments passed to
-#'    default methods.
+#'    `default` methods.
 #' @export
 logNormCounts <- function(object, ...) UseMethod("logNormCounts")
 

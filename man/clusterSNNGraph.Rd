@@ -40,7 +40,7 @@ clusterSNNGraph(object, ...)
 \item{...}{\itemize{
 \item \code{default} method: cannot be used.
 \item \code{SingleCellExperiment} and \code{Seurat} method: additional arguments passed to
-default methods.
+\code{default} methods.
 }}
 
 \item{dimred}{String or integer scalar specifying the existing dimensionality

@@ -33,7 +33,7 @@ scoreMarkers(object, ...)
 \item{...}{\itemize{
 \item \code{default} method: cannot be used.
 \item \code{SingleCellExperiment} and \code{Seurat} method: additional arguments passed to
-default methods.
+\code{default} methods.
 }}
 
 \item{assay}{Integer scalar or string indicating which assay of x

@@ -4,7 +4,7 @@
 #' @param ...
 #'  - `default` method: additional argumentds passed to [logNormCounts].
 #'  - `SingleCellExperiment` and `Seurat` method: additional arguments passed to
-#'    default methods.
+#'    `default` methods.
 #' @inherit runPCA return
 #' @seealso
 #' - [logNormCounts]
