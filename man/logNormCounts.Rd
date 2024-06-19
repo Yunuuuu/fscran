@@ -28,7 +28,11 @@ logNormCounts(object, ...)
 \item{object}{A matrix-like object containing the counts (non-negative
 integers). Rows are features and columns are cells.}
 
-\item{...}{Additional arguments passed to default methods.}
+\item{...}{\itemize{
+\item \code{default} method: cannot be used.
+\item \code{SingleCellExperiment} and \code{Seurat} method: additional arguments passed to
+default methods.
+}}
 
 \item{size_factors}{A numeric vector of length equal to the number of cells
 in x, containing positive size factors for all cells.}
