@@ -36,7 +36,7 @@ runPCA(object, ...)
   subset_row = NULL,
   batch = NULL,
   batch_method = NULL,
-  force_integer = TRUE,
+  force_integer = FALSE,
   no_sparse_copy = TRUE,
   threads = NULL
 )

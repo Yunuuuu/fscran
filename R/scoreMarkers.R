@@ -35,7 +35,7 @@ scoreMarkers.default <- function(object, groups, lfc = 0L,
                                  sort_by = "cohen.rank", all_pairwise = FALSE,
                                  ...,
                                  batch = NULL,
-                                 force_integer = TRUE,
+                                 force_integer = FALSE,
                                  no_sparse_copy = TRUE,
                                  threads = NULL) {
     rlang::check_dots_empty()

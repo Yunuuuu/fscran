@@ -22,7 +22,7 @@ scoreMarkers(object, ...)
   all_pairwise = FALSE,
   ...,
   batch = NULL,
-  force_integer = TRUE,
+  force_integer = FALSE,
   no_sparse_copy = TRUE,
   threads = NULL
 )
