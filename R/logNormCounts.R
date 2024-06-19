@@ -37,8 +37,8 @@ logNormCounts.Seurat <- function(object, ..., assay = NULL, layer = "counts") {
 #' centering the size factors. If `"lowest"`, we downscale all batches to the
 #' coverage of the lowest batch. If `"perblock"`, we scale each batch to a mean
 #' of 1. Default: `"perblock"`.
-#' @param force_integer Logical scalar indicating whether double-precision x
-#' should be forced into integers.
+#' @param force_integer Logical scalar indicating whether double-precision
+#' `object` should be forced into integers.
 #' @param no_sparse_copy Logical scalar indicating whether we should avoid a
 #' copy when object is a [dgCMatrix][Matrix::dgCMatrix-class] This is more
 #' memory efficient if the data has already been loaded into memory. If `TRUE`,

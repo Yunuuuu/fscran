@@ -59,8 +59,8 @@ effects for every pairwise comparison.}
 specifying the batch of origin for each cell. Alternatively NULL if all cells
 belong to the same batch.}
 
-\item{force_integer}{Logical scalar indicating whether double-precision x
-should be forced into integers.}
+\item{force_integer}{Logical scalar indicating whether double-precision
+\code{object} should be forced into integers.}
 
 \item{no_sparse_copy}{Logical scalar indicating whether we should avoid a
 copy when object is a \link[Matrix:dgCMatrix-class]{dgCMatrix} This is more

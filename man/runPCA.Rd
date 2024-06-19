@@ -83,8 +83,8 @@ supplied). \code{"block"} is equivalent to linear regression on x prior to PCA,
 while \code{"weight"} will only weight each batch so that they contribute equally
 to the PCA.}
 
-\item{force_integer}{Logical scalar indicating whether double-precision x
-should be forced into integers.}
+\item{force_integer}{Logical scalar indicating whether double-precision
+\code{object} should be forced into integers.}
 
 \item{no_sparse_copy}{Logical scalar indicating whether we should avoid a
 copy when object is a \link[Matrix:dgCMatrix-class]{dgCMatrix} This is more

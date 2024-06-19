@@ -51,8 +51,8 @@ centering the size factors. If \code{"lowest"}, we downscale all batches to the
 coverage of the lowest batch. If \code{"perblock"}, we scale each batch to a mean
 of 1. Default: \code{"perblock"}.}
 
-\item{force_integer}{Logical scalar indicating whether double-precision x
-should be forced into integers.}
+\item{force_integer}{Logical scalar indicating whether double-precision
+\code{object} should be forced into integers.}
 
 \item{no_sparse_copy}{Logical scalar indicating whether we should avoid a
 copy when object is a \link[Matrix:dgCMatrix-class]{dgCMatrix} This is more
