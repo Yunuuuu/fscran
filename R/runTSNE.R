@@ -49,6 +49,7 @@ runTSNE.default <- function(object, perplexity = 30L, interpolate = NULL,
                             ...,
                             approximate = TRUE, seed = 1234L,
                             threads = NULL) {
+    rlang::check_dots_empty()
     assert_number(perplexity)
     assert_number(interpolate, null_ok = TRUE)
     assert_number(max_depth)

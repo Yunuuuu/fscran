@@ -46,6 +46,7 @@ runUMAP.default <- function(object, n_neighbors = 15L,
                             ...,
                             approximate = TRUE, seed = 1234L,
                             threads = NULL) {
+    rlang::check_dots_empty()
     assert_number(n_neighbors)
     assert_number(min_dist)
     assert_number(n_epochs)

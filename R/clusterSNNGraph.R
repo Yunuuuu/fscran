@@ -65,6 +65,7 @@ clusterSNNGraph.default <- function(object, k = 15L, method = "leiden",
                                     objective = NULL, steps = 4L,
                                     approximate = TRUE, seed = 1234L,
                                     threads = NULL) {
+    rlang::check_dots_empty()
     assert_number(k)
     method <- match.arg(method, c("multilevel", "walktrap", "leiden"))
     scheme <- match.arg(scheme, c("rank", "jaccard", "number"))

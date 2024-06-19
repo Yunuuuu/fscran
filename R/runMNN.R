@@ -48,6 +48,7 @@ runMNN.default <- function(object, batch, k = 15L, ...,
                            nmads = 3L, mass_cap = NULL,
                            order = NULL, reference_policy = NULL,
                            approximate = TRUE, threads = NULL) {
+    rlang::check_dots_empty()
     # run MNN --------------------------------------------------------
     .runMNN(
         object = object,

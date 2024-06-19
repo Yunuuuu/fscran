@@ -59,6 +59,7 @@ runPCA.default <- function(object, d = 50L, scale = FALSE, ...,
                            subset_row = NULL, batch = NULL, batch_method = NULL,
                            force_integer = TRUE, no_sparse_copy = TRUE,
                            threads = NULL) {
+    rlang::check_dots_empty()
     .runPCA(
         logcounts = scran.chan::initializeSparseMatrix(
             object,

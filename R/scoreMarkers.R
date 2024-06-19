@@ -38,7 +38,7 @@ scoreMarkers.default <- function(object, groups, lfc = 0L,
                                  force_integer = TRUE,
                                  no_sparse_copy = TRUE,
                                  threads = NULL) {
-    batch_mode <- match.arg(batch_mode, c("perblock", "lowest"))
+    rlang::check_dots_empty()
     scran.chan::scoreMarkers.chan(
         x = scran.chan::initializeSparseMatrix(
             object,
