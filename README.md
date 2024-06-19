@@ -47,3 +47,4 @@ or `SingleCellExperiment` objects.
 | `runUMAP`         | uniform manifold approximation and projection |
 | `scoreMarkers`    | Score marker genes                            |
 | `clusterSNNGraph` | Graph-based clustering                        |
+| `subCluster`      | Find subclusters                              |
