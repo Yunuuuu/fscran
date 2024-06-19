@@ -58,11 +58,12 @@ subCluster.default <- function(object, groups, restricted = NULL, ...,
         new_levels <- sprintf(format, group, levels(sub_membership))
         all_levels <- order_levels(policy, group, all_levels, new_levels)
         # save the attributes returned by `clusterFn` ------------
-        sub_attributes <- attributes(sub_membership)
-        names(sub_attributes) <- sprintf(
-            "subCluster%s_%s", group, names(sub_attributes)
-        )
-        all_attributes <- c(all_attributes, sub_attributes)
+        if (!is.null(sub_attributes <- attributes(sub_membership))) {
+            names(sub_attributes) <- sprintf(
+                "subCluster%s_%s", group, names(sub_attributes)
+            )
+            all_attributes <- c(all_attributes, sub_attributes)
+        }
     }
     out <- factor(all_groups, levels = all_levels)
     attributes(out) <- all_attributes
