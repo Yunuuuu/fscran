@@ -38,7 +38,7 @@ logNormCounts.Seurat <- function(object, ..., assay = NULL, layer = "counts") {
 #' should be forced into integers.
 #' @param no_sparse_copy Logical scalar indicating whether we should avoid a
 #' copy when object is a [dgCMatrix][Matrix::dgCMatrix-class] This is more
-#' memory efficient if the data has already been loaded into memory. If TRUE,
+#' memory efficient if the data has already been loaded into memory. If `TRUE`,
 #' any setting of force.integer is ignored.
 #' @param threads Integer scalar specifying the number of threads to use. If
 #' `NULL`, all detected threads will be used. See

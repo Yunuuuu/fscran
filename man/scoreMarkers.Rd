@@ -60,7 +60,7 @@ should be forced into integers.}
 
 \item{no_sparse_copy}{Logical scalar indicating whether we should avoid a
 copy when object is a \link[Matrix:dgCMatrix-class]{dgCMatrix} This is more
-memory efficient if the data has already been loaded into memory. If TRUE,
+memory efficient if the data has already been loaded into memory. If \code{TRUE},
 any setting of force.integer is ignored.}
 
 \item{threads}{Integer scalar specifying the number of threads to use. If
