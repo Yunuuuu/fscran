@@ -27,11 +27,11 @@ logNormAndPCA(object, ...)
 \arguments{
 \item{object}{A matrix-like object. Rows are features and columns are cells.}
 
-\item{...}{
-  Arguments passed on to \code{\link[=logNormCounts]{logNormCounts}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{\itemize{
+\item \code{default} method: additional argumentds passed to \link{logNormCounts}.
+\item \code{SingleCellExperiment} and \code{Seurat} method: additional arguments passed to
+default methods.
+}}
 
 \item{name}{String specifying the name to be used to store the result in the
 \link[SingleCellExperiment:reducedDims]{reducedDims} or

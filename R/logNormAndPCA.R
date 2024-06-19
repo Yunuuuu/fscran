@@ -1,6 +1,10 @@
 #' Perform Principal components analysis with `scran.chan`
 #'
 #' @inheritParams runPCA
+#' @param ...
+#'  - `default` method: additional argumentds passed to [logNormCounts].
+#'  - `SingleCellExperiment` and `Seurat` method: additional arguments passed to
+#'    default methods.
 #' @inherit runPCA return
 #' @seealso
 #' - [logNormCounts]
@@ -49,7 +53,6 @@ logNormAndPCA.Seurat <- function(object, ..., assay = NULL, layer = "counts",
     add_dimred_to_seurat(object, pca, name, assay, layer)
 }
 
-#' @inheritDotParams logNormCounts
 #' @export
 #' @rdname logNormAndPCA
 logNormAndPCA.default <- .logNormAndPCA
