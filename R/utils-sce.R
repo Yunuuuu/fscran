@@ -1,5 +1,5 @@
 # we always regard features in row and cells in column
-.get_mat_from_sce <- function(x, assay, dimred, n_dimred) {
+.get_mat_from_sce <- function(x, assay, dimred = NULL, n_dimred = NULL) {
     if (!is.null(dimred)) {
         # value is expected to be a matrix or matrix-like object with number of
         # rows equal to ncol(x).
@@ -14,7 +14,8 @@
     }
 }
 
-.get_mat_from_seurat <- function(x, assay, layer, dimred, n_dimred) {
+.get_mat_from_seurat <- function(x, assay, layer,
+                                 dimred = NULL, n_dimred = NULL) {
     if (!is.null(dimred)) {
         # value is expected to be a matrix or matrix-like object with number of
         # rows equal to ncol(x).
@@ -29,7 +30,7 @@
     }
 }
 
-.get_assay_from_seurat <- function(x, assay, layer, dimred) {
+.get_assay_from_seurat <- function(x, assay, layer, dimred = NULL) {
     if (!is.null(dimred)) {
         SeuratObject::DefaultAssay(x[[dimred]])
     } else if (!is.null(assay)) {
@@ -44,11 +45,12 @@ add_dimred_to_sce <- function(object, value, name) {
     object
 }
 
-add_dimred_to_seurat <- function(object, value, name, assay, layer, dimred) {
+add_dimred_to_seurat <- function(object, value, name, assay, layer,
+                                 dimred = NULL) {
     reduction_key <- SeuratObject::Key(name, quiet = TRUE)
     object[[name]] <- SeuratObject::CreateDimReducObject(
         embeddings = value,
-        stdev = as.numeric(apply(value, 2L, stats::sd)),
+        stdev = apply(value, 2L, stats::sd, simplify = TRUE),
         assay = .get_assay_from_seurat(object, assay, layer, dimred),
         key = reduction_key
     )

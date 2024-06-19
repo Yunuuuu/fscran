@@ -8,11 +8,10 @@
 #' @export
 logNormAndPCA <- function(object, ...) UseMethod("logNormAndPCA")
 
-
 #' @export
 #' @rdname logNormAndPCA
 logNormAndPCA.SingleCellExperiment <- function(object, ..., name = "PCA") {
-    pca <- logNormAndPCA(object = object, ...)
+    pca <- NextMethod("logNormAndPCA", object = object, ...)
     add_dimred_to_sce(object, pca, name)
 }
 
@@ -21,7 +20,9 @@ logNormAndPCA.SingleCellExperiment <- function(object, ..., name = "PCA") {
 logNormAndPCA.Seurat <- function(object, ...,
                                  assay = NULL, layer = "counts",
                                  name = "PCA") {
-    pca <- logNormAndPCA(object = object, ..., assay = assay, layer = layer)
+    pca <- NextMethod("logNormAndPCA",
+        object = object, ..., assay = assay, layer = layer
+    )
     add_dimred_to_seurat(object, pca, name, assay, layer, NULL)
 }
 

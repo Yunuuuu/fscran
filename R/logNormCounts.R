@@ -51,6 +51,7 @@ logNormCounts.default <- function(object, size_factors = NULL,
                                   batch = NULL, batch_mode = NULL, ...,
                                   force_integer = TRUE, no_sparse_copy = TRUE,
                                   threads = NULL) {
+    rlang::check_dots_empty()
     batch_mode <- match.arg(batch_mode, c("perblock", "lowest"))
     threads <- set_threads(threads)
     scran.chan::logNormCounts.chan(
