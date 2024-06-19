@@ -72,34 +72,50 @@ any setting of force.integer is ignored.}
 \link[parallel:detectCores]{detectCores}.}
 }
 \value{
-A list containing \code{statistics}, a list of data frame of marker statistics. 
+A list of data frame of marker statistics.
 Each data frame corresponds to a group in \code{groups} and contains:
 \itemize{
-\item \code{mean}, the mean expression across all cells in the current group.
-\item \code{detected}, proportion of cells with detectable expression in the current group.
-\item \code{logFC}, the mean of the log-fold changes in expression compared to other groups.
-\item \code{delta.detected}, the mean of the difference in the detected proportions compared to other groups.
-\item \code{cohen.min}, the smallest Cohen's d across all pairwise comparisons involving the current group.
-\item \code{cohen.mean}, the mean Cohen's d across all pairwise comparisons involving the current group.
-\item \code{cohen.rank}, the minimum rank of the Cohen's d across all pairwise comparisons.
-\item \code{auc.min}, the smallest AUC across all pairwise comparisons involving the current group.
-\item \code{auc.mean}, the mean AUC across all pairwise comparisons involving the current group.
-\item \code{auc.rank}, the minimum rank of the AUC across all pairwise comparisons.
+\item \code{mean}: the mean expression across all cells in the current group.
+\item \code{detected}: proportion of cells with detectable expression in the current
+group.
+\item \code{logFC}: the mean of the log-fold changes in expression compared to other
+groups.
+\item \code{delta.detected}: the mean of the difference in the detected proportions
+compared to other groups.
+\item \code{cohen.min}: the smallest Cohen's d across all pairwise comparisons
+involving the current group.
+\item \code{cohen.mean}: the mean Cohen's d across all pairwise comparisons involving
+the current group.
+\item \code{cohen.rank}: the minimum rank of the Cohen's d across all pairwise
+comparisons.
+\item \code{auc.min}: the smallest AUC across all pairwise comparisons involving the
+current group.
+\item \code{auc.mean}: the mean AUC across all pairwise comparisons involving the
+current group.
+\item \code{auc.rank}: the minimum rank of the AUC across all pairwise comparisons.
 }
+
 Rows are sorted by the specified column in \code{sort.by}.
 
-If \code{simple.means.only=FALSE}, \code{logFC} and \code{delta.detected} are renamed to \code{logFC.mean} and \code{delta.detected.mean}, respectively.
-In addition, the corresponding \code{*.min} and \code{*.rank} columns are also reported.
-These can be interpreted in a similar manner as \code{cohen.min}, \code{cohen.rank}, etc. for these effect sizes.
+If \code{simple_means_only=FALSE}, \code{logFC} and \code{delta.detected} are
+renamed to \code{logFC.mean} and \code{delta.detected.mean}, respectively.
+In addition, the corresponding \verb{*.min} and \verb{*.rank} columns are
+also reported.
+These can be interpreted in a similar manner as \code{cohen.min},
+\code{cohen.rank}, etc. for these effect sizes.
 
 If \code{batch} is supplied, this list will also contain \code{per.batch}.
-This is a list containing \code{mean} and \code{detected}, each of which are lists of data frames containing the batch-specific statistics for each group.
-(In this case, \code{statistics} contains the averaged statistics for each gene across batches.)
+This is a list containing \code{mean} and \code{detected}, each of which are
+lists of data frames containing the batch-specific statistics for each group.
+(In this case, \code{statistics} contains the averaged statistics for each
+gene across batches)
 
-If \code{all.pairwise=TRUE}, this list will also contain \code{pairwise}, a list of lists of data frames.
-Each data frame contains the statistics for the pairwise comparison between groups, 
-e.g., `pairwise$A$B` contains the statistics for A versus B where large effects correspond to upregulation in A.
-Note that rows correspond to the order in \code{x} - \code{sort.by} has no effect on these data frames.
+If \code{all_pairwise=TRUE}, this list will also contain \code{pairwise}, a list of
+lists of data frames. Each data frame contains the statistics for the
+pairwise comparison between groups, e.g., \code{pairwise$A$B} contains the
+statistics for \verb{A versus B} where large effects correspond to upregulation in
+A. Note that rows correspond to the order in \code{object}. \code{sort_by} has no
+effect on these data frames.
 }
 \description{
 Score marker genes

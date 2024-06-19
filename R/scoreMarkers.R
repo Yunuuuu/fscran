@@ -28,6 +28,50 @@ scoreMarkers.Seurat <- function(object, ..., assay = NULL, layer = "data") {
 #' effects for every pairwise comparison.
 #' @inheritParams logNormCounts
 #' @inherit scran.chan::scoreMarkers.chan details return
+#' @return A list of data frame of marker statistics.
+#' Each data frame corresponds to a group in `groups` and contains:
+#'
+#' - `mean`: the mean expression across all cells in the current group.
+#' - `detected`: proportion of cells with detectable expression in the current
+#'             group.
+#' - `logFC`: the mean of the log-fold changes in expression compared to other
+#'          groups.
+#' - `delta.detected`: the mean of the difference in the detected proportions
+#'                   compared to other groups.
+#' - `cohen.min`: the smallest Cohen's d across all pairwise comparisons
+#'              involving the current group.
+#' - `cohen.mean`: the mean Cohen's d across all pairwise comparisons involving
+#'               the current group.
+#' - `cohen.rank`: the minimum rank of the Cohen's d across all pairwise
+#'               comparisons.
+#' - `auc.min`: the smallest AUC across all pairwise comparisons involving the
+#'              current group.
+#' - `auc.mean`: the mean AUC across all pairwise comparisons involving the
+#'               current group.
+#' - `auc.rank`: the minimum rank of the AUC across all pairwise comparisons.
+#'
+#' Rows are sorted by the specified column in `sort.by`.
+#'
+#' If `simple_means_only=FALSE`, `logFC` and `delta.detected` are
+#' renamed to `logFC.mean` and `delta.detected.mean`, respectively.
+#' In addition, the corresponding `*.min` and `*.rank` columns are
+#' also reported.
+#' These can be interpreted in a similar manner as `cohen.min`,
+#' `cohen.rank`, etc. for these effect sizes.
+#'
+#' If `batch` is supplied, this list will also contain `per.batch`.
+#' This is a list containing `mean` and `detected`, each of which are
+#' lists of data frames containing the batch-specific statistics for each group.
+#' (In this case, `statistics` contains the averaged statistics for each
+#' gene across batches)
+#'
+#' If `all_pairwise=TRUE`, this list will also contain `pairwise`, a list of
+#' lists of data frames. Each data frame contains the statistics for the
+#' pairwise comparison between groups, e.g., `pairwise$A$B` contains the
+#' statistics for `A versus B` where large effects correspond to upregulation in
+#' A. Note that rows correspond to the order in `object`. `sort_by` has no
+#' effect on these data frames.
+#'
 #' @rdname scoreMarkers
 #' @export
 scoreMarkers.default <- function(object, groups, lfc = 0L,
@@ -39,7 +83,7 @@ scoreMarkers.default <- function(object, groups, lfc = 0L,
                                  no_sparse_copy = TRUE,
                                  threads = NULL) {
     rlang::check_dots_empty()
-    scran.chan::scoreMarkers.chan(
+    out <- scran.chan::scoreMarkers.chan(
         x = scran.chan::initializeSparseMatrix(
             object,
             force.integer = force_integer,
@@ -54,4 +98,5 @@ scoreMarkers.default <- function(object, groups, lfc = 0L,
         sort.by = sort_by,
         all.pairwise = all_pairwise
     )
+    if (all_pairwise) out else out$statistics
 }
