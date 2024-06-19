@@ -35,14 +35,15 @@ or `SingleCellExperiment` objects.
 
 ## Available functions
 
-| functions       | Description                                   |
-|-----------------|-----------------------------------------------|
-| `logNormCounts` | Log-transformed normalized expression         |
-| `runPCA`        | Principal component analysis                  |
-| `logNormAndPCA` | `logNormCounts` + `runPCA`                    |
-| `runMNN`        | Fast mutual nearest neighbors correction      |
-| `quickMNN`      | `logNormAndPCA` + `runMNN`                    |
-| `downsample`    | Downsample cells based on their neighbors     |
-| `runTSNE`       | t-stochastic neighbor embedding               |
-| `runUMAP`       | uniform manifold approximation and projection |
-| `scoreMarkers`  | Score marker genes                            |
+| functions         | Description                                   |
+|-------------------|-----------------------------------------------|
+| `logNormCounts`   | Log-transformed normalized expression         |
+| `runPCA`          | Principal component analysis                  |
+| `logNormAndPCA`   | `logNormCounts` + `runPCA`                    |
+| `runMNN`          | Fast mutual nearest neighbors correction      |
+| `quickMNN`        | `logNormAndPCA` + `runMNN`                    |
+| `downsample`      | Downsample cells based on their neighbors     |
+| `runTSNE`         | t-stochastic neighbor embedding               |
+| `runUMAP`         | uniform manifold approximation and projection |
+| `scoreMarkers`    | Score marker genes                            |
+| `clusterSNNGraph` | Graph-based clustering                        |
