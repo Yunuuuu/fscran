@@ -2,7 +2,10 @@
 #'
 #' @param object A matrix-like object containing the counts (non-negative
 #' integers). Rows are features and columns are cells.
-#' @param ... Additional arguments passed to default methods.
+#' @param ...
+#'  - `default` method: cannot be used.
+#'  - `SingleCellExperiment` and `Seurat` method: additional arguments passed to
+#'    default methods.
 #' @export
 logNormCounts <- function(object, ...) UseMethod("logNormCounts")
 

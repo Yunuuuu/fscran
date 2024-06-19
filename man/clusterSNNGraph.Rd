@@ -37,7 +37,11 @@ clusterSNNGraph(object, ...)
 \arguments{
 \item{object}{A matrix-like object. Rows are features and columns are cells.}
 
-\item{...}{Additional arguments passed to default methods.}
+\item{...}{\itemize{
+\item \code{default} method: cannot be used.
+\item \code{SingleCellExperiment} and \code{Seurat} method: additional arguments passed to
+default methods.
+}}
 
 \item{dimred}{String or integer scalar specifying the existing dimensionality
 reduction results to use.}
