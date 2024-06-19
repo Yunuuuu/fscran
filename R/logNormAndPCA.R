@@ -38,7 +38,7 @@ logNormAndPCA.default <- function(object, d = 50L, scale = FALSE, ...,
     logcounts <- logNormCounts(
         object = object,
         batch = batch,
-        num.threads = threads,
+        threads = threads,
         ...
     )
 
