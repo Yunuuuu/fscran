@@ -66,7 +66,9 @@ subCluster.default <- function(object, groups, restricted = NULL, ...,
         }
     }
     out <- factor(all_groups, levels = all_levels)
-    attributes(out) <- all_attributes
+    for (attr_nm in names(all_attributes)) {
+        attr(out, attr_nm) <- all_attributes[[attr_nm]]
+    }
     out
 }
 
