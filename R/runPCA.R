@@ -62,12 +62,11 @@ runPCA.default <- function(object, d = 50L, scale = FALSE, ...,
     rlang::check_dots_empty()
     threads <- set_threads(threads)
     .runPCA(
-        logcounts = scran.chan::initializeSparseMatrix(
+        logcounts = initialize_matrix(
             object,
-            force.integer = force_integer,
-            no.sparse.copy = no_sparse_copy,
-            by.column = TRUE,
-            num.threads = threads
+            force_integer = force_integer,
+            no_sparse_copy = no_sparse_copy,
+            threads = threads
         ),
         d = d,
         subset_row = subset_row,

@@ -56,8 +56,8 @@ in ascending order). If \code{NULL}, no sorting is performed.}
 effects for every pairwise comparison.}
 
 \item{batch}{Vector or factor of length equal to the number of cells,
-specifying the batch of origin for each cell. Alternatively NULL if all cells
-belong to the same batch.}
+specifying the batch of origin for each cell. Alternatively \code{NULL} if all
+cells belong to the same batch.}
 
 \item{force_integer}{Logical scalar indicating whether double-precision
 \code{object} should be forced into integers.}

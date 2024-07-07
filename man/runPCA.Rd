@@ -75,8 +75,8 @@ features to use in the PCA (e.g., highly variable genes). If NULL, all
 features in x are used.}
 
 \item{batch}{Vector or factor of length equal to the number of cells,
-specifying the batch of origin for each cell. Alternatively NULL if all cells
-belong to the same batch.}
+specifying the batch of origin for each cell. Alternatively \code{NULL} if all
+cells belong to the same batch.}
 
 \item{batch_method}{String indicating how batch should be handled (if it is
 supplied). \code{"block"} is equivalent to linear regression on x prior to PCA,

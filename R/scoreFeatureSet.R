@@ -1,5 +1,5 @@
 #' Score feature set activity for each cell
-#' 
+#'
 #' @inheritParams runPCA
 #' @export
 scoreFeatureSet <- function(object, ...) UseMethod("scoreFeatureSet")
@@ -33,12 +33,11 @@ scoreFeatureSet.default <- function(object, features,
     rlang::check_dots_empty()
     threads <- set_threads(threads)
     scran.chan::scoreFeatureSet.chan(
-        x = scran.chan::initializeSparseMatrix(
+        x = initialize_matrix(
             object,
-            force.integer = force_integer,
-            no.sparse.copy = no_sparse_copy,
-            by.column = TRUE,
-            num.threads = threads
+            force_integer = force_integer,
+            no_sparse_copy = no_sparse_copy,
+            threads = threads
         ),
         features = features, batch = batch, scale = scale,
         num.threads = threads

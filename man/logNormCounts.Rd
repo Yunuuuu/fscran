@@ -43,8 +43,8 @@ contains the expression values.}
 \item{layer}{Name of the layer to get from the assay data.}
 
 \item{batch}{Vector or factor of length equal to the number of cells,
-specifying the batch of origin for each cell. Alternatively NULL if all cells
-belong to the same batch.}
+specifying the batch of origin for each cell. Alternatively \code{NULL} if all
+cells belong to the same batch.}
 
 \item{batch_mode}{String indicating how batch should be handled when
 centering the size factors. If \code{"lowest"}, we downscale all batches to the

@@ -31,8 +31,8 @@ logNormCounts.Seurat <- function(object, ..., assay = NULL, layer = "counts") {
 #' @param size_factors A numeric vector of length equal to the number of cells
 #' in x, containing positive size factors for all cells.
 #' @param batch Vector or factor of length equal to the number of cells,
-#' specifying the batch of origin for each cell. Alternatively NULL if all cells
-#' belong to the same batch.
+#' specifying the batch of origin for each cell. Alternatively `NULL` if all
+#' cells belong to the same batch.
 #' @param batch_mode String indicating how batch should be handled when
 #' centering the size factors. If `"lowest"`, we downscale all batches to the
 #' coverage of the lowest batch. If `"perblock"`, we scale each batch to a mean
@@ -58,12 +58,11 @@ logNormCounts.default <- function(object, size_factors = NULL,
     batch_mode <- match.arg(batch_mode, c("perblock", "lowest"))
     threads <- set_threads(threads)
     scran.chan::logNormCounts.chan(
-        x = scran.chan::initializeSparseMatrix(
+        x = initialize_matrix(
             object,
-            force.integer = force_integer,
-            no.sparse.copy = no_sparse_copy,
-            by.column = TRUE,
-            num.threads = threads
+            force_integer = force_integer,
+            no_sparse_copy = no_sparse_copy,
+            threads = threads
         ),
         size.factors = size_factors,
         batch = batch,

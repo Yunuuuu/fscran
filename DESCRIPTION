@@ -8,14 +8,14 @@ Description: Implement scran function with scran.chan.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1.9000
+RoxygenNote: 7.3.2
 Imports: 
+    cli,
     rlang (>= 1.1.0),
     scran.chan (>= 0.3.4)
 Remotes: 
     LTLA/scran.chan
 Suggests: 
-    cli,
     Matrix,
     SeuratObject,
     SingleCellExperiment,

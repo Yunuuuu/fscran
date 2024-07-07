@@ -41,8 +41,8 @@ contains the expression values.}
 \item{features}{Integer, logical or character vector specifying the features that belong to the set.}
 
 \item{batch}{Vector or factor of length equal to the number of cells,
-specifying the batch of origin for each cell. Alternatively NULL if all cells
-belong to the same batch.}
+specifying the batch of origin for each cell. Alternatively \code{NULL} if all
+cells belong to the same batch.}
 
 \item{scale}{Logical scalar indicating whether to scale rows to unit
 variance.}

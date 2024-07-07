@@ -86,12 +86,11 @@ scoreMarkers.default <- function(object, groups, lfc = 0L,
     rlang::check_dots_empty()
     threads <- set_threads(threads)
     out <- scran.chan::scoreMarkers.chan(
-        x = scran.chan::initializeSparseMatrix(
+        x = initialize_matrix(
             object,
-            force.integer = force_integer,
-            no.sparse.copy = no_sparse_copy,
-            by.column = TRUE,
-            num.threads = threads
+            force_integer = force_integer,
+            no_sparse_copy = no_sparse_copy,
+            threads = threads
         ),
         groups = groups, batch = batch,
         lfc = lfc,

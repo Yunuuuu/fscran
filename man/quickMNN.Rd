@@ -46,8 +46,8 @@ quickMNN(object, ...)
   }}
 
 \item{batch}{Vector or factor of length equal to the number of cells,
-specifying the batch of origin for each cell. Alternatively NULL if all cells
-belong to the same batch.}
+specifying the batch of origin for each cell. Alternatively \code{NULL} if all
+cells belong to the same batch.}
 
 \item{k}{Integer scalar specifying the number of neighbors to use when
 identifying MNN pairs.}
