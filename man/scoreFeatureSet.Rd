@@ -9,13 +9,13 @@
 \usage{
 scoreFeatureSet(object, ...)
 
-\method{scoreFeatureSet}{SingleCellExperiment}(object, ..., assay = "logcounts")
+\method{scoreFeatureSet}{SingleCellExperiment}(object, ..., name = "scores", assay = "logcounts")
 
 \method{scoreFeatureSet}{Seurat}(object, ..., assay = NULL, layer = "data")
 
 \method{scoreFeatureSet}{default}(
   object,
-  features,
+  feature_sets,
   batch = NULL,
   scale = FALSE,
   ...,
@@ -33,12 +33,16 @@ scoreFeatureSet(object, ...)
 \code{default} methods.
 }}
 
+\item{name}{A string of alternative Experiment name.}
+
 \item{assay}{Integer scalar or string indicating which assay of x
 contains the expression values.}
 
 \item{layer}{Name of the layer to get from the assay data.}
 
-\item{features}{Integer, logical or character vector specifying the features that belong to the set.}
+\item{feature_sets}{A list of Integer, logical or character vector specifying
+the features that belong to the set. You can also directly input an atomic
+vector if there is only one feature set.}
 
 \item{batch}{Vector or factor of length equal to the number of cells,
 specifying the batch of origin for each cell. Alternatively \code{NULL} if all
@@ -60,8 +64,7 @@ any setting of force.integer is ignored.}
 \link[parallel:detectCores]{detectCores}.}
 }
 \value{
-List containing \code{scores}, a numeric vector of per-cell scores for each column in \code{x};
-and \code{weights}, a numeric vector of per-feature weights for each feature in \code{features} (ordered by their row indices in \code{x}).
+A matrix of feature scores.
 }
 \description{
 Compute per-cell scores for a given feature set, defined as the column sums of a rank-1 approximation to the submatrix for the feature set.
