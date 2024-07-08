@@ -2,14 +2,14 @@
 % Please edit documentation in R/scoreFeatureSet.R
 \name{scoreFeatureSet}
 \alias{scoreFeatureSet}
-\alias{scoreFeatureSet.SingleCellExperiment}
+\alias{scoreFeatureSet.SummarizedExperiment}
 \alias{scoreFeatureSet.Seurat}
 \alias{scoreFeatureSet.default}
 \title{Score feature set activity for each cell}
 \usage{
 scoreFeatureSet(object, ...)
 
-\method{scoreFeatureSet}{SingleCellExperiment}(object, ..., name = "scores", assay = "logcounts")
+\method{scoreFeatureSet}{SummarizedExperiment}(object, ..., name = "scores", assay = "logcounts")
 
 \method{scoreFeatureSet}{Seurat}(object, ..., assay = NULL, layer = "data")
 
@@ -33,7 +33,7 @@ scoreFeatureSet(object, ...)
 \code{default} methods.
 }}
 
-\item{name}{A string of alternative Experiment name.}
+\item{name}{A string of score assay name.}
 
 \item{assay}{Integer scalar or string indicating which assay of x
 contains the expression values.}

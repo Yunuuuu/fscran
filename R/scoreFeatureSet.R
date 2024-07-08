@@ -4,17 +4,19 @@
 #' @export
 scoreFeatureSet <- function(object, ...) UseMethod("scoreFeatureSet")
 
-#' @param name A string of alternative Experiment name.
+#' @param name A string of score assay name.
 #' @export
 #' @rdname scoreFeatureSet
-scoreFeatureSet.SingleCellExperiment <- function(object, ...,
+scoreFeatureSet.SummarizedExperiment <- function(object, ...,
                                                  name = "scores",
                                                  assay = "logcounts") {
     mat <- .get_mat_from_sce(object, assay)
-    SingleCellExperiment::altExp(object, name) <- scoreFeatureSet(
-        object = mat, ...
+    scores <- list(scoreFeatureSet(object = mat, ...))
+    names(scores) <- name
+    SummarizedExperiment::SummarizedExperiment(
+        assays = scores,
+        colData = SummarizedExperiment::colData(object)
     )
-    object
 }
 
 #' @export
