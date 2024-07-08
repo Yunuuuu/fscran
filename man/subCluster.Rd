@@ -22,7 +22,8 @@ subCluster(object, ...)
 
 \item{...}{Additional arguments passed on to \code{clusterFn}.}
 
-\item{groups}{A vector specifying the group assignment for each cell in x.}
+\item{groups}{A vector specifying the group assignment for each cell in
+\code{object}.}
 
 \item{restricted}{Character vector containing the subset of groups in
 \code{groups} to be subclustered. By default, all unique groups in \code{groups} are

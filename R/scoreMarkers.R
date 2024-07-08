@@ -17,7 +17,8 @@ scoreMarkers.Seurat <- function(object, ..., assay = NULL, layer = "data") {
     scoreMarkers(object = mat, ...)
 }
 
-#' @param groups A vector specifying the group assignment for each cell in x.
+#' @param groups A vector specifying the group assignment for each cell in
+#' `object`.
 #' @inheritParams scran.chan::scoreMarkers.chan
 #' @param simple_means_only Logical scalar indicating whether to only report the
 #' means for the simple effect sizes, i.e., log-fold change and delta-detected.

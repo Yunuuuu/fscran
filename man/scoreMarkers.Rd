@@ -41,7 +41,8 @@ contains the expression values.}
 
 \item{layer}{Name of the layer to get from the assay data.}
 
-\item{groups}{A vector specifying the group assignment for each cell in x.}
+\item{groups}{A vector specifying the group assignment for each cell in
+\code{object}.}
 
 \item{lfc}{Non-negative numeric scalar specifying the log-fold change threshold to use.}
 
