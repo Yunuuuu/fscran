@@ -3,6 +3,9 @@
 
 # Fast single-cell RNA-seq data analysis (fscran)
 
+⚠️ ⚠️ ⚠️ ⚠️ **This repository is deprecated, use the
+[scend](https://github.com/Yunuuuu/scend) package instead.** ⚠️ ⚠️ ⚠️ ⚠️
+
 <!-- badges: start -->
 <!-- badges: end -->
 
